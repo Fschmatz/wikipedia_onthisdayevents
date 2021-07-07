@@ -5,7 +5,7 @@ import 'package:wikipedia_onthisdayevents/util/changelog.dart';
 class AppInfoPage extends StatelessWidget {
 
   _launchGithub()  {
-    const url = 'https://github.com/Fschmatz/legendas_tv_rss';
+    const url = 'https://github.com/Fschmatz/wikipedia_onthisdayevents';
     launch(url);
   }
 
@@ -16,14 +16,14 @@ class AppInfoPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Informações"),
+          title: Text("App Info"),
           elevation: 0,
         ),
         body: ListView(children: <Widget>[
           const SizedBox(height: 20),
           CircleAvatar(
             radius: 55,
-            backgroundColor: Colors.redAccent,
+            backgroundColor: Colors.pink,
             child: CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage('assets/avatar.jpg'),
@@ -40,7 +40,9 @@ class AppInfoPage extends StatelessWidget {
           const SizedBox(height: 15),
           const Divider(),
           ListTile(
-            leading: Icon( Icons.info_outline),
+            leading: SizedBox(
+              height: 0.1,
+            ),
             title: Text("Dev".toUpperCase(),
                 style: TextStyle(
                     fontSize: 13,
@@ -48,11 +50,31 @@ class AppInfoPage extends StatelessWidget {
                     color: themeColorApp)),
           ),
           ListTile(
+            leading: Icon( Icons.info_outline),
+            title: Text(
+              "HAMMERED AND REDONE: 0 Times !!!",
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+          ),
+          ListTile(
             leading: SizedBox(
               height: 0.1,
             ),
             title: Text(
-              "Aplicativo criado usando Flutter e a linguagem Dart, usado para teste e aprendizado.",
+              "( This is The Way! )",
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: SizedBox(
+              height: 0.1,
+            ),
+            title: Text(
+              "Application created using Flutter and the Dart language, used for testing and learning.",
               style: TextStyle(
                 fontSize: 16,
               ),
@@ -91,11 +113,10 @@ class AppInfoPage extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.messenger_outline),
             title: Text(
-              " ! ",
+              "Your assumptions are your windows on the world. Scrub them off every once in a while, or the light won't come in.\nIsaac Asimov",
               style: TextStyle(fontSize: 16),
             ),
           ),
-          const SizedBox(height: 30,)
         ]));
   }
 }
