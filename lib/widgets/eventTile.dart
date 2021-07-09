@@ -32,7 +32,7 @@ class _EventTileState extends State<EventTile> {
       child: Column(
         children: [
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+            contentPadding: EdgeInsets.fromLTRB(16, 5, 16, 0),
             title: Text(
               widget.event.text,
               style: TextStyle(fontSize: 16),

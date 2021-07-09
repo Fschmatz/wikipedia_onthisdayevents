@@ -51,8 +51,9 @@ class _HomeState extends State<Home> {
     DateTime? data = await showDatePicker(
         context: context,
         initialDate: dateSelected,
-        firstDate: DateTime(DateTime.now().year - 5),
-        lastDate: DateTime(DateTime.now().year + 5));
+        firstDate: DateTime(DateTime.now().year - 1),
+        lastDate: DateTime(DateTime.now().year + 1));
+
 
     if (data != null) {
       setState(() {
@@ -135,7 +136,6 @@ class _HomeState extends State<Home> {
         floatingActionButton: Container(
           child: FittedBox(
             child: FloatingActionButton.extended(
-              backgroundColor: Theme.of(context).accentColor,
               elevation: 0.0,
               onPressed: () {
                 chooseDate();
