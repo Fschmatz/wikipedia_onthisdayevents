@@ -17,6 +17,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   //https://en.wikipedia.org/api/rest_v1/#/Feed/onThisDay  -> pg da API
 
+  // ALL https://en.wikipedia.org/api/rest_v1/feed/onthisday/all/$month/$day
+  // EVENTS https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day
+
   String day = '';
   String month = '';
   String feedUrl = '';
@@ -29,7 +32,8 @@ class _HomeState extends State<Home> {
     dateSelected = DateTime.now();
     day = getSelectedDay().toString();
     month = getSelectedMonth().toString();
-    feedUrl = 'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
+    feedUrl =
+        'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
     print(feedUrl);
     loadJsonData();
     super.initState();
@@ -56,7 +60,8 @@ class _HomeState extends State<Home> {
         dateSelected = data;
         day = getSelectedDay().toString();
         month = getSelectedMonth().toString();
-        feedUrl = 'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
+        feedUrl =
+            'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
       });
       loadJsonData();
     }
@@ -85,10 +90,14 @@ class _HomeState extends State<Home> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Wikipedia On This Day',style: TextStyle(fontSize:19),),
+              Text(
+                'Wikipedia On This Day',
+                style: TextStyle(fontSize: 19),
+              ),
               Text(
                 eventsList.length.toString() + " Events",
-                style: TextStyle(fontSize:19,color: Theme.of(context).hintColor),
+                style:
+                    TextStyle(fontSize: 19, color: Theme.of(context).hintColor),
               ),
             ],
           ),
@@ -101,26 +110,27 @@ class _HomeState extends State<Home> {
                     color: Theme.of(context).accentColor,
                   ),
                 )
-              : RefreshIndicator(
-                  onRefresh: loadJsonData,
-                  color: Theme.of(context).accentColor,
-                  child: ListView(
-                      physics: AlwaysScrollableScrollPhysics(),
-                      children: [
-                        ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: eventsList.length,
-                          itemBuilder: (context, index) {
-                            return EventTile(
-                                text: eventsList[index].toString());
-                          },
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        )
-                      ]),
-                ),
+              : ListView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  children: [
+                    ListView.separated(
+                      separatorBuilder: (BuildContext context, int index) => const Divider(),
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: eventsList.length,
+                      itemBuilder: (context, index) {
+                        return EventTile(
+                          event: new Event(
+                            text: eventsList[index].text,
+                            eventYear: eventsList[index].eventYear,
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    )
+                  ]),
         ),
         floatingActionButton: Container(
           child: FittedBox(
@@ -131,8 +141,8 @@ class _HomeState extends State<Home> {
                 chooseDate();
               },
               label: Text(
-                day +'/'+ month,
-                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
+                day + '/' + month,
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
               ),
               icon: Icon(
                 Icons.event_outlined,
