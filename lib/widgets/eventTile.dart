@@ -27,7 +27,7 @@ class _EventTileState extends State<EventTile> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //_launchBrowser(widget.feed.link);
+        _launchBrowser(widget.event.articleLink);
       },
       child: Column(
         children: [
@@ -39,25 +39,18 @@ class _EventTileState extends State<EventTile> {
             ),
           ),
           ListTile(
-            leading: Text(
-              widget.event.eventYear.toString(),
-              style: TextStyle(
-                  fontSize: 14,
-                  color: Theme.of(context).accentColor,
-                  fontWeight: FontWeight.w600),
-            ),
             title: Text(
-              '',
+              widget.event.eventYear.toString() +'     '+ widget.event.title,
               style: TextStyle(
                   fontSize: 14,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).accentColor.withOpacity(0.9),
                   fontWeight: FontWeight.w600),
             ),
             trailing: Container(
               width: 55,
               child: TextButton(
                 onPressed: () {
-                  //Share.share(widget.feed.link);
+                  Share.share(widget.event.articleLink);
                 },
                 child: Icon(
                   Icons.share_outlined,

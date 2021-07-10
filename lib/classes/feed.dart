@@ -16,9 +16,4 @@ class Feed {
     }
     throw {print('Feed Error')};
   }
-
-  @override
-  String toString() {
-    return '{ ${this.events} }';
-  }
 }

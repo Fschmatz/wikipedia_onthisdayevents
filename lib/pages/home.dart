@@ -34,7 +34,6 @@ class _HomeState extends State<Home> {
     month = getSelectedMonth().toString();
     feedUrl =
         'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
-    print(feedUrl);
     loadJsonData();
     super.initState();
   }
@@ -73,14 +72,11 @@ class _HomeState extends State<Home> {
     if (response.statusCode == 200) {
       Feed feedList = Feed.fromJson(jsonDecode(response.body));
       List<Event> listaEvents = feedList.events.toList();
-
       setState(() {
         loading = false;
         eventsList = listaEvents;
       });
     }
-    print('Mes -> ' + getSelectedMonth().toString());
-    print('Dia -> ' + getSelectedDay().toString());
   }
 
   @override
@@ -95,10 +91,13 @@ class _HomeState extends State<Home> {
                 'Wikipedia On This Day',
                 style: TextStyle(fontSize: 19),
               ),
-              Text(
-                eventsList.length.toString() + " Events",
-                style:
-                    TextStyle(fontSize: 19, color: Theme.of(context).hintColor),
+              Visibility(
+                visible: loading == false,
+                child: Text(
+                  eventsList.length.toString() + " Events",
+                  style:
+                      TextStyle(fontSize: 19, color: Theme.of(context).hintColor),
+                ),
               ),
             ],
           ),
@@ -124,6 +123,8 @@ class _HomeState extends State<Home> {
                           event: new Event(
                             text: eventsList[index].text,
                             eventYear: eventsList[index].eventYear,
+                            articleLink: eventsList[index].articleLink,
+                            title:  eventsList[index].title,
                           ),
                         );
                       },
@@ -134,19 +135,17 @@ class _HomeState extends State<Home> {
                   ]),
         ),
         floatingActionButton: Container(
-          child: FittedBox(
-            child: FloatingActionButton.extended(
-              elevation: 0.0,
-              onPressed: () {
-                chooseDate();
-              },
-              label: Text(
-                day + '/' + month,
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
-              ),
-              icon: Icon(
-                Icons.event_outlined,
-              ),
+          child: FloatingActionButton.extended(
+            elevation: 0.0,
+            onPressed: () {
+              chooseDate();
+            },
+            label: Text(
+              day + '/' + month,
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+            ),
+            icon: Icon(
+              Icons.today,
             ),
           ),
         ),
