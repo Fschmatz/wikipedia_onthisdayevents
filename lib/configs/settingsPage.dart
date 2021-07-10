@@ -38,13 +38,13 @@ class _SettingsPageState extends State<SettingsPage> {
                 margin: const EdgeInsets.fromLTRB(16, 20, 16, 25),
                 color: themeColorApp,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 child: ListTile(
                   title: Text(
                     Changelog.appName + " " + Changelog.appVersion,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 17.5, color: Colors.black),
+                    style: TextStyle(fontSize: 18, color: Theme.of(context).accentTextTheme.headline2!.color),
                   ),
                 ),
               ),

@@ -1,10 +1,10 @@
 class Changelog{
 
-  static String appVersion = "1.0.0";
-  static String appName = "Wikipedia On This Day";
+  static String appVersion = "1.0.1";
+  static String appName = "Wikipedia On This Day Events";
 
   static String changelogCurrent = '''  
-1.0.0
+1.0.1
 - Technically Usable
 ''';
 

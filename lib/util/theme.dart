@@ -22,6 +22,7 @@ ThemeData light = ThemeData(
     ),
     accentTextTheme: TextTheme(
       headline1: TextStyle(color: Colors.lightBlue[700]),
+      headline2: TextStyle(color: Color(0xFFFFFFFF)),
     ),
     bottomAppBarColor: Color(0xFFE6E6E6),
    );
@@ -30,7 +31,7 @@ ThemeData light = ThemeData(
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
     primaryColor: Color(0xFF252525),
-    accentColor: Color(0xFF5491D1),
+    accentColor: Color(0xFF518CC9),
     scaffoldBackgroundColor: Color(0xFF252525),
     cardTheme: CardTheme(
       color: Color(0xFF323232),
@@ -47,7 +48,8 @@ ThemeData dark = ThemeData(
     ),
     bottomAppBarColor: Color(0xFF151515),
     accentTextTheme: TextTheme(
-      headline1: TextStyle(color: Color(0xFF6A9ACC)),
+      headline1: TextStyle(color: Color(0xFF83B5EB)),
+      headline2: TextStyle(color: Color(0xFF000000)),
     )
     );
 

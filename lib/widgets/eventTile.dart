@@ -39,12 +39,15 @@ class _EventTileState extends State<EventTile> {
             ),
           ),
           ListTile(
-            leading: Text(
-              widget.event.eventYear.toString(),
-              style: TextStyle(
-                  fontSize: 14,
-                  color: Theme.of(context).accentTextTheme.headline1!.color,
-                  fontWeight: FontWeight.w600),
+            leading: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
+              child: Text(
+                widget.event.eventYear.toString(),
+                style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).accentTextTheme.headline1!.color,
+                    fontWeight: FontWeight.w600),
+              ),
             ),
             title: Text(
               widget.event.title,
