@@ -22,7 +22,7 @@ ThemeData light = ThemeData(
     ),
     accentTextTheme: TextTheme(
       headline1: TextStyle(color: Colors.lightBlue[700]),
-      headline2: TextStyle(color: Color(0xFFFFFFFF)),
+      headline2: TextStyle(color: Color(0xFFF1F1F1)),
     ),
     bottomAppBarColor: Color(0xFFE6E6E6),
    );
