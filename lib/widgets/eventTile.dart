@@ -39,22 +39,30 @@ class _EventTileState extends State<EventTile> {
             ),
           ),
           ListTile(
-            title: Text(
-              widget.event.eventYear.toString() +'     '+ widget.event.title,
+            leading: Text(
+              widget.event.eventYear.toString(),
               style: TextStyle(
                   fontSize: 14,
-                  color: Theme.of(context).accentColor.withOpacity(0.9),
+                  color: Theme.of(context).accentTextTheme.headline1!.color,
+                  fontWeight: FontWeight.w600),
+            ),
+            title: Text(
+              widget.event.title,
+              style: TextStyle(
+                  fontSize: 14,
+                  color: Theme.of(context).accentTextTheme.headline1!.color,
                   fontWeight: FontWeight.w600),
             ),
             trailing: Container(
               width: 55,
+              height: 40,
               child: TextButton(
                 onPressed: () {
                   Share.share(widget.event.articleLink);
                 },
                 child: Icon(
                   Icons.share_outlined,
-                  size: 20,
+                  size: 21,
                   color: Theme.of(context)
                       .textTheme
                       .headline6!

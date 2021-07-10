@@ -15,10 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  //https://en.wikipedia.org/api/rest_v1/#/Feed/onThisDay  -> pg da API
-
-  // ALL https://en.wikipedia.org/api/rest_v1/feed/onthisday/all/$month/$day
-  // EVENTS https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day
+  //https://en.wikipedia.org/api/rest_v1/#/Feed/onThisDay  ->  API page
 
   String day = '';
   String month = '';
@@ -89,14 +86,13 @@ class _HomeState extends State<Home> {
             children: [
               Text(
                 'Wikipedia On This Day',
-                style: TextStyle(fontSize: 19),
               ),
-              Visibility(
-                visible: loading == false,
-                child: Text(
+              AnimatedSwitcher(
+                duration: Duration(milliseconds: 500),
+                child: loading ? SizedBox.shrink() : Text(
                   eventsList.length.toString() + " Events",
                   style:
-                      TextStyle(fontSize: 19, color: Theme.of(context).hintColor),
+                  TextStyle( color: Theme.of(context).hintColor),
                 ),
               ),
             ],
