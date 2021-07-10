@@ -40,7 +40,7 @@ class _EventTileState extends State<EventTile> {
           ),
           ListTile(
             leading: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
+              padding: const EdgeInsets.fromLTRB(0, 3.5, 0, 0),
               child: Text(
                 widget.event.eventYear.toString(),
                 style: TextStyle(
