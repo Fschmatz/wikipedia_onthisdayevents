@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wikipedia_onthisdayevents/classes/event.dart';
-import 'package:wikipedia_onthisdayevents/classes/feed.dart';
 
 class EventTile extends StatefulWidget {
   @override
@@ -27,7 +26,9 @@ class _EventTileState extends State<EventTile> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        _launchBrowser(widget.event.articleLink);
+        if (widget.event.articleLink != 'null') {
+          _launchBrowser(widget.event.articleLink);
+        }
       },
       child: Column(
         children: [
@@ -49,35 +50,41 @@ class _EventTileState extends State<EventTile> {
                     fontWeight: FontWeight.w600),
               ),
             ),
-            title: Text(
-              widget.event.title,
-              style: TextStyle(
-                  fontSize: 14,
-                  color: Theme.of(context).accentTextTheme.headline1!.color,
-                  fontWeight: FontWeight.w600),
+            title: Visibility(
+              visible: widget.event.title != 'null',
+              child: Text(
+                widget.event.title,
+                style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).accentTextTheme.headline1!.color,
+                    fontWeight: FontWeight.w600),
+              ),
             ),
-            trailing: Container(
-              width: 55,
-              height: 40,
-              child: TextButton(
-                onPressed: () {
-                  Share.share(widget.event.articleLink);
-                },
-                child: Icon(
-                  Icons.share_outlined,
-                  size: 21,
-                  color: Theme.of(context)
-                      .textTheme
-                      .headline6!
-                      .color!
-                      .withOpacity(0.6),
-                ),
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  primary: Theme.of(context).cardTheme.color,
-                  onPrimary: Theme.of(context).accentColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.0),
+            trailing: Visibility(
+              visible: widget.event.title != 'null',
+              child: Container(
+                width: 55,
+                height: 40,
+                child: TextButton(
+                  onPressed: () {
+                    Share.share(widget.event.articleLink);
+                  },
+                  child: Icon(
+                    Icons.share_outlined,
+                    size: 21,
+                    color: Theme.of(context)
+                        .textTheme
+                        .headline6!
+                        .color!
+                        .withOpacity(0.6),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    primary: Theme.of(context).cardTheme.color,
+                    onPrimary: Theme.of(context).accentColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
                   ),
                 ),
               ),

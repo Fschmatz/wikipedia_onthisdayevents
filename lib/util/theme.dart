@@ -22,7 +22,7 @@ ThemeData light = ThemeData(
     ),
     accentTextTheme: TextTheme(
       headline1: TextStyle(color: Colors.lightBlue[700]),
-      headline2: TextStyle(color: Color(0xFFF5F5F5)),
+      headline2: TextStyle(color: Color(0xFFF1F1F1)),
     ),
     bottomAppBarColor: Color(0xFFE6E6E6),
    );
@@ -31,24 +31,24 @@ ThemeData light = ThemeData(
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
     primaryColor: Color(0xFF252525),
-    accentColor: Color(0xFF518CC9),
+    accentColor: Color(0xFF447DB8),
     scaffoldBackgroundColor: Color(0xFF252525),
     cardTheme: CardTheme(
-      color: Color(0xFF323232),
+      color: Color(0xFF303030),
     ),
     dialogTheme: DialogTheme(
-      backgroundColor: Color(0xFF323232),
+      backgroundColor: Color(0xFF303030),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedIconTheme: IconThemeData(color: Color(0xFFA590D5)),
       selectedLabelStyle: TextStyle(color: Color(0xFFA590D5)),
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      backgroundColor: Color(0xFF171717),
+      backgroundColor: Color(0xFF151515),
     ),
     bottomAppBarColor: Color(0xFF151515),
     accentTextTheme: TextTheme(
-      headline1: TextStyle(color: Color(0xFF83B5EB)),
+      headline1: TextStyle(color: Color(0xFF8ebff5)),
       headline2: TextStyle(color: Color(0xFF000000)),
     )
     );

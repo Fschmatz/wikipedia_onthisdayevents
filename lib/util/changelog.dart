@@ -1,11 +1,12 @@
 class Changelog{
 
-  static String appVersion = "1.0.1";
+  static String appVersion = "1.0.2";
   static String appName = "Wikipedia On This Day Events";
 
   static String changelogCurrent = '''  
-1.0.1
+1.0.2
 - Technically Usable
+- Bug Fixes
 ''';
 
   static String changelogsOld = '''
