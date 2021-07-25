@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
+import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'package:wikipedia_onthisdayevents/classes/event.dart';
 import 'package:wikipedia_onthisdayevents/classes/feed.dart';
 import 'package:wikipedia_onthisdayevents/configs/settingsPage.dart';
@@ -14,7 +15,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   //https://en.wikipedia.org/api/rest_v1/#/Feed/onThisDay  ->  API page
 
   String day = '';
@@ -23,6 +24,7 @@ class _HomeState extends State<Home> {
   List<Event> eventsList = [];
   bool loading = true;
   late DateTime dateSelected;
+  final controllerScroll = ScrollController();
 
   @override
   void initState() {
@@ -34,6 +36,9 @@ class _HomeState extends State<Home> {
     loadJsonData();
     super.initState();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   getSelectedDay() {
     return DateFormat('dd').format(dateSelected);
@@ -49,7 +54,6 @@ class _HomeState extends State<Home> {
         initialDate: dateSelected,
         firstDate: DateTime(DateTime.now().year - 1),
         lastDate: DateTime(DateTime.now().year + 1));
-
 
     if (data != null) {
       setState(() {
@@ -79,19 +83,21 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        appBar: ScrollAppBar(
           elevation: 0,
+          controller: controllerScroll,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Wikipedia On This Day'),
               AnimatedSwitcher(
                 duration: Duration(milliseconds: 600),
-                child: loading ? SizedBox.shrink() : Text(
-                  eventsList.length.toString() + " Events",
-                  style:
-                  TextStyle( color: Theme.of(context).hintColor),
-                ),
+                child: loading
+                    ? SizedBox.shrink()
+                    : Text(
+                        eventsList.length.toString() + " Events",
+                        style: TextStyle(color: Theme.of(context).hintColor),
+                      ),
               ),
             ],
           ),
@@ -105,28 +111,32 @@ class _HomeState extends State<Home> {
                   ),
                 )
               : ListView(
+                  controller: controllerScroll,
                   physics: AlwaysScrollableScrollPhysics(),
                   children: [
-                    ListView.separated(
-                      separatorBuilder: (BuildContext context, int index) => const Divider(height: 0,),
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: eventsList.length,
-                      itemBuilder: (context, index) {
-                        return EventTile(
-                          event: new Event(
-                            text: eventsList[index].text,
-                            eventYear: eventsList[index].eventYear,
-                            articleLink: eventsList[index].articleLink,
-                            title:  eventsList[index].title,
-                          ),
-                        );
-                      },
-                    ),
-                    const SizedBox(
-                      height: 50,
-                    )
-                  ]),
+                      ListView.separated(
+                        separatorBuilder: (BuildContext context, int index) =>
+                            const Divider(
+                          height: 0,
+                        ),
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: eventsList.length,
+                        itemBuilder: (context, index) {
+                          return EventTile(
+                            event: new Event(
+                              text: eventsList[index].text,
+                              eventYear: eventsList[index].eventYear,
+                              articleLink: eventsList[index].articleLink,
+                              title: eventsList[index].title,
+                            ),
+                          );
+                        },
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      )
+                    ]),
         ),
         floatingActionButton: Container(
           child: FloatingActionButton.extended(

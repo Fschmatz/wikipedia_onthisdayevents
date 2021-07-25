@@ -57,7 +57,11 @@ class _EventTileState extends State<EventTile> {
                 widget.event.title,
                 style: TextStyle(
                     fontSize: 14,
-                    color: Theme.of(context).accentTextTheme.headline1!.color,
+                    color: Theme.of(context)
+                        .textTheme
+                        .headline6!
+                        .color!
+                        .withOpacity(0.6),
                     fontWeight: FontWeight.w600),
               ),
             ),
@@ -70,7 +74,7 @@ class _EventTileState extends State<EventTile> {
                 splashRadius: 25,
                 icon: Icon(
                   Icons.share_outlined,
-                  size: 21,
+                  size: 22,
                   color: Theme.of(context)
                       .textTheme
                       .headline6!

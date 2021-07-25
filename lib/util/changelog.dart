@@ -6,6 +6,7 @@ class Changelog{
   static String changelogCurrent = '''  
 1.1.0
 - Ui Changes
+- Hide Appbar
 - Bug Fixes
 ''';
 

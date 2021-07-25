@@ -30,25 +30,25 @@ ThemeData light = ThemeData(
 //ESCURO
 ThemeData dark = ThemeData(
   brightness: Brightness.dark,
-  primaryColor: Color(0xFF202022),
+  primaryColor: Color(0xFF222222),
   accentColor: Color(0xFF447DB8),
-  scaffoldBackgroundColor: Color(0xFF202022),
+  scaffoldBackgroundColor: Color(0xFF222222),
   cardTheme: CardTheme(
-    color: Color(0xFF303032),
+    color: Color(0xFF303030),
   ),
   dialogTheme: DialogTheme(
-    backgroundColor: Color(0xFF303032),
+    backgroundColor: Color(0xFF303030),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedIconTheme: IconThemeData(color: Color(0xFFA590D5)),
     selectedLabelStyle: TextStyle(color: Color(0xFFA590D5)),
     showSelectedLabels: false,
     showUnselectedLabels: false,
-    backgroundColor: Color(0xFF151517),
+    backgroundColor: Color(0xFF151515),
   ),
-  bottomAppBarColor: Color(0xFF151517),
+  bottomAppBarColor: Color(0xFF151515),
   accentTextTheme: TextTheme(
-    headline1: TextStyle(color: Color(0xFF9BC8FA)),
+    headline1: TextStyle(color: Color(0xFF97bde8)),
     headline2: TextStyle(color: Color(0xFF000000)),
   ),
 );
