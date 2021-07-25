@@ -6,7 +6,7 @@ class ChangelogPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Color themeColorApp = Theme.of(context).accentColor;
+    Color? accentText = Theme.of(context).accentTextTheme.headline1!.color;
 
     return Scaffold(
         appBar: AppBar(
@@ -22,7 +22,7 @@ class ChangelogPage extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
-                      color: themeColorApp))),
+                      color: accentText))),
           ListTile(
             leading: Icon(
               Icons.article_outlined,
@@ -41,7 +41,7 @@ class ChangelogPage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: themeColorApp)),
+                    color: accentText)),
           ),
           ListTile(
             leading: Icon(

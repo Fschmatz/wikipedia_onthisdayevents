@@ -23,6 +23,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
 
     Color themeColorApp = Theme.of(context).accentColor;
+    Color? accentText = Theme.of(context).accentTextTheme.headline1!.color;
 
     return Scaffold(
         appBar: AppBar(
@@ -44,7 +45,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   title: Text(
                     Changelog.appName + " " + Changelog.appVersion,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 17.5, color: Theme.of(context).accentTextTheme.headline2!.color),
+                    style: TextStyle(fontSize: 17.5),
                   ),
                 ),
               ),
@@ -56,7 +57,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w700,
-                        color: themeColorApp)
+                        color: accentText)
                 ),
               ),
               ListTile(
@@ -104,7 +105,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w700,
-                        color: themeColorApp)
+                        color: accentText)
                 ),
               ),
               Consumer<ThemeNotifier>(

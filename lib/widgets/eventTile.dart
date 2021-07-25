@@ -33,13 +33,14 @@ class _EventTileState extends State<EventTile> {
       child: Column(
         children: [
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(16, 5, 16, 0),
+            contentPadding: EdgeInsets.fromLTRB(16, 10, 16, 0),
             title: Text(
               widget.event.text,
               style: TextStyle(fontSize: 16),
             ),
           ),
           ListTile(
+            contentPadding: EdgeInsets.fromLTRB(16, 0, 0, 0),
             leading: Padding(
               padding: const EdgeInsets.fromLTRB(0, 3.5, 0, 0),
               child: Text(
@@ -62,30 +63,19 @@ class _EventTileState extends State<EventTile> {
             ),
             trailing: Visibility(
               visible: widget.event.title != 'null',
-              child: Container(
-                width: 55,
-                height: 40,
-                child: TextButton(
-                  onPressed: () {
-                    Share.share(widget.event.articleLink);
-                  },
-                  child: Icon(
-                    Icons.share_outlined,
-                    size: 21,
-                    color: Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .color!
-                        .withOpacity(0.6),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    primary: Theme.of(context).cardTheme.color,
-                    onPrimary: Theme.of(context).accentColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0),
-                    ),
-                  ),
+              child: IconButton(
+                onPressed: () {
+                  Share.share(widget.event.articleLink);
+                },
+                splashRadius: 25,
+                icon: Icon(
+                  Icons.share_outlined,
+                  size: 21,
+                  color: Theme.of(context)
+                      .textTheme
+                      .headline6!
+                      .color!
+                      .withOpacity(0.6),
                 ),
               ),
             ),

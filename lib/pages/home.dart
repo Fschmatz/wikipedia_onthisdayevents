@@ -84,11 +84,9 @@ class _HomeState extends State<Home> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Wikipedia On This Day',
-              ),
+              Text('Wikipedia On This Day'),
               AnimatedSwitcher(
-                duration: Duration(milliseconds: 500),
+                duration: Duration(milliseconds: 600),
                 child: loading ? SizedBox.shrink() : Text(
                   eventsList.length.toString() + " Events",
                   style:
@@ -99,7 +97,7 @@ class _HomeState extends State<Home> {
           ),
         ),
         body: AnimatedSwitcher(
-          duration: Duration(milliseconds: 500),
+          duration: Duration(milliseconds: 600),
           child: loading
               ? Center(
                   child: CircularProgressIndicator(
@@ -110,7 +108,7 @@ class _HomeState extends State<Home> {
                   physics: AlwaysScrollableScrollPhysics(),
                   children: [
                     ListView.separated(
-                      separatorBuilder: (BuildContext context, int index) => const Divider(),
+                      separatorBuilder: (BuildContext context, int index) => const Divider(height: 0,),
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: eventsList.length,
@@ -126,7 +124,7 @@ class _HomeState extends State<Home> {
                       },
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 50,
                     )
                   ]),
         ),

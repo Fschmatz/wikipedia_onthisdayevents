@@ -12,7 +12,7 @@ class AppInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Color themeColorApp = Theme.of(context).accentColor;
+    Color? accentText = Theme.of(context).accentTextTheme.headline1!.color;
 
     return Scaffold(
         appBar: AppBar(
@@ -35,7 +35,7 @@ class AppInfoPage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
-                    color: themeColorApp)),
+                    color: accentText)),
           ),
           const SizedBox(height: 15),
           const Divider(),
@@ -47,7 +47,7 @@ class AppInfoPage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: themeColorApp)),
+                    color: accentText)),
           ),
           ListTile(
             leading: Icon( Icons.info_outline),
@@ -89,7 +89,7 @@ class AppInfoPage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: themeColorApp)),
+                    color: accentText)),
           ),
           ListTile(
             onTap: () {_launchGithub();},
@@ -108,7 +108,7 @@ class AppInfoPage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: themeColorApp)),
+                    color: accentText)),
           ),
           ListTile(
             leading: Icon(Icons.messenger_outline),

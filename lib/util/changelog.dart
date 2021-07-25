@@ -1,15 +1,19 @@
 class Changelog{
 
-  static String appVersion = "1.0.2";
+  static String appVersion = "1.1.0";
   static String appName = "Wikipedia On This Day Events";
 
   static String changelogCurrent = '''  
-1.0.2
-- Technically Usable
+1.1.0
+- Ui Changes
 - Bug Fixes
 ''';
 
   static String changelogsOld = '''
+1.0.2
+- Technically Usable
+- Bug Fixes
+
 0.5.0
 - Added Dynamic Value for Nested Json
 - UI Changes
