@@ -82,28 +82,28 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: ScrollAppBar(
-          elevation: 0,
-          controller: controllerScroll,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Wikipedia On This Day'),
-              AnimatedSwitcher(
-                duration: Duration(milliseconds: 600),
-                child: loading
-                    ? SizedBox.shrink()
-                    : Text(
-                        eventsList.length.toString() + " Events",
-                        style: TextStyle(color: Theme.of(context).hintColor),
-                      ),
-              ),
-            ],
+    return SafeArea(
+      child: Scaffold(
+          appBar: ScrollAppBar(
+            elevation: 0,
+            controller: controllerScroll,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Wikipedia On This Day'),
+                AnimatedSwitcher(
+                  duration: Duration(milliseconds: 600),
+                  child: loading
+                      ? SizedBox.shrink()
+                      : Text(
+                          eventsList.length.toString() + " Events",
+                          style: TextStyle(color: Theme.of(context).hintColor),
+                        ),
+                ),
+              ],
+            ),
           ),
-        ),
-        body: SafeArea(
-          child: AnimatedSwitcher(
+          body: AnimatedSwitcher(
             duration: Duration(milliseconds: 600),
             child: loading
                 ? Center(
@@ -139,46 +139,46 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                         )
                       ]),
           ),
-        ),
-        floatingActionButton: Container(
-          child: FloatingActionButton.extended(
-            elevation: 0.0,
-            onPressed: () {
-              chooseDate();
-            },
-            label: Text(
-              day + '/' + month,
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
-            ),
-            icon: Icon(
-              Icons.today,
+          floatingActionButton: Container(
+            child: FloatingActionButton.extended(
+              elevation: 0.0,
+              onPressed: () {
+                chooseDate();
+              },
+              label: Text(
+                day + '/' + month,
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+              ),
+              icon: Icon(
+                Icons.today,
+              ),
             ),
           ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: BottomAppBar(
-          child: Container(
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                IconButton(
-                    color: Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .color!
-                        .withOpacity(0.8),
-                    icon: Icon(
-                      Icons.settings_outlined,
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) => SettingsPage(),
-                            fullscreenDialog: true,
-                          ));
-                    }),
-              ])),
-        ));
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          bottomNavigationBar: BottomAppBar(
+            child: Container(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                  IconButton(
+                      color: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .color!
+                          .withOpacity(0.8),
+                      icon: Icon(
+                        Icons.settings_outlined,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => SettingsPage(),
+                              fullscreenDialog: true,
+                            ));
+                      }),
+                ])),
+          )),
+    );
   }
 }
