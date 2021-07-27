@@ -41,28 +41,33 @@ class _EventTileState extends State<EventTile> {
           ),
           ListTile(
             contentPadding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-            leading: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 3.5, 0, 0),
-              child: Text(
-                widget.event.eventYear.toString(),
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Theme.of(context).accentTextTheme.headline1!.color,
-                    fontWeight: FontWeight.w600),
-              ),
-            ),
-            title: Visibility(
-              visible: widget.event.title != 'null',
-              child: Text(
-                widget.event.title,
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .color!
-                        .withOpacity(0.6),
-                    fontWeight: FontWeight.w600),
+            title: RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(
+                    text: widget.event.eventYear.toString(),
+                    style: TextStyle(
+                        fontSize: 14,
+                        color:
+                            Theme.of(context).accentTextTheme.headline1!.color,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  TextSpan(
+                    text: '        ',
+                  ),
+                  TextSpan(
+                      text: widget.event.title == 'null'
+                          ? ' '
+                          : widget.event.title,
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Theme.of(context)
+                              .textTheme
+                              .headline6!
+                              .color!
+                              .withOpacity(0.6),
+                          fontWeight: FontWeight.w600)),
+                ],
               ),
             ),
             trailing: Visibility(

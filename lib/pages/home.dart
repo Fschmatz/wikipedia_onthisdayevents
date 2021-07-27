@@ -102,41 +102,43 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             ],
           ),
         ),
-        body: AnimatedSwitcher(
-          duration: Duration(milliseconds: 600),
-          child: loading
-              ? Center(
-                  child: CircularProgressIndicator(
-                    color: Theme.of(context).accentColor,
-                  ),
-                )
-              : ListView(
-                  controller: controllerScroll,
-                  physics: AlwaysScrollableScrollPhysics(),
-                  children: [
-                      ListView.separated(
-                        separatorBuilder: (BuildContext context, int index) =>
-                            const Divider(
-                          height: 0,
+        body: SafeArea(
+          child: AnimatedSwitcher(
+            duration: Duration(milliseconds: 600),
+            child: loading
+                ? Center(
+                    child: CircularProgressIndicator(
+                      color: Theme.of(context).accentColor,
+                    ),
+                  )
+                : ListView(
+                    controller: controllerScroll,
+                    physics: AlwaysScrollableScrollPhysics(),
+                    children: [
+                        ListView.separated(
+                          separatorBuilder: (BuildContext context, int index) =>
+                              const Divider(
+                            height: 0,
+                          ),
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: eventsList.length,
+                          itemBuilder: (context, index) {
+                            return EventTile(
+                              event: new Event(
+                                text: eventsList[index].text,
+                                eventYear: eventsList[index].eventYear,
+                                articleLink: eventsList[index].articleLink,
+                                title: eventsList[index].title,
+                              ),
+                            );
+                          },
                         ),
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: eventsList.length,
-                        itemBuilder: (context, index) {
-                          return EventTile(
-                            event: new Event(
-                              text: eventsList[index].text,
-                              eventYear: eventsList[index].eventYear,
-                              articleLink: eventsList[index].articleLink,
-                              title: eventsList[index].title,
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(
-                        height: 50,
-                      )
-                    ]),
+                        const SizedBox(
+                          height: 50,
+                        )
+                      ]),
+          ),
         ),
         floatingActionButton: Container(
           child: FloatingActionButton.extended(
