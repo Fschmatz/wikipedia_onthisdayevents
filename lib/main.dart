@@ -11,7 +11,6 @@ Future<void> main() async {
 
     child: Consumer<ThemeNotifier>(
       builder:(context, ThemeNotifier notifier, child){
-
         return MaterialApp(
           theme: notifier.darkTheme ? dark : light,
           home: Home(),
