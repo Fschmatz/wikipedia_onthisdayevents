@@ -1,16 +1,20 @@
 class Changelog{
 
-  static String appVersion = "1.1.0";
+  static String appVersion = "1.2.0";
   static String appName = "Wikipedia On This Day Events";
 
   static String changelogCurrent = '''  
-1.1.0
-- Ui Changes
-- Hide Appbar
+1.2.0
+- Home Changes
 - Bug Fixes
 ''';
 
   static String changelogsOld = '''
+1.1.0
+- Ui Changes
+- Hide Appbar
+- Bug Fixes
+
 1.0.2
 - Technically Usable
 - Bug Fixes

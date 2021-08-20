@@ -41,50 +41,45 @@ class _EventTileState extends State<EventTile> {
           ),
           ListTile(
             contentPadding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-            title: RichText(
-              text: TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                    text: widget.event.eventYear.toString(),
-                    style: TextStyle(
-                        fontSize: 14,
-                        color:
-                            Theme.of(context).accentTextTheme.headline1!.color,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  TextSpan(
-                    text: '        ',
-                  ),
-                  TextSpan(
-                      text: widget.event.title == 'null'
-                          ? ' '
-                          : widget.event.title,
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: Theme.of(context)
-                              .textTheme
-                              .headline6!
-                              .color!
-                              .withOpacity(0.6),
-                          fontWeight: FontWeight.w600)),
-                ],
-              ),
-            ),
-            trailing: Visibility(
-              visible: widget.event.title != 'null',
-              child: IconButton(
-                onPressed: () {
-                  Share.share(widget.event.articleLink);
-                },
-                splashRadius: 25,
-                icon: Icon(
-                  Icons.share_outlined,
-                  size: 22,
+            visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+            title: Text(
+              widget.event.title == 'null' ? ' ' : widget.event.title,
+              style: TextStyle(
+                  fontSize: 14,
                   color: Theme.of(context)
                       .textTheme
                       .headline6!
                       .color!
                       .withOpacity(0.6),
+                  fontWeight: FontWeight.w600),
+            ),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.fromLTRB(16, 0, 0, 5),
+            visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+            title: Text(
+              widget.event.eventYear.toString(),
+              style: TextStyle(
+                  fontSize: 14,
+                  color: Theme.of(context).accentTextTheme.headline1!.color,
+                  fontWeight: FontWeight.w600),
+            ),
+            trailing: Visibility(
+              visible: widget.event.title != 'null',
+              child: Container(
+                child: IconButton(
+                  onPressed: () {
+                    Share.share(widget.event.articleLink);
+                  },
+                  icon: Icon(
+                    Icons.share_outlined,
+                    size: 22,
+                    color: Theme.of(context)
+                        .textTheme
+                        .headline6!
+                        .color!
+                        .withOpacity(0.6),
+                  ),
                 ),
               ),
             ),
