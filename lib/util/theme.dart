@@ -24,6 +24,9 @@ ThemeData light = ThemeData(
     headline1: TextStyle(color: Colors.lightBlue[700]),
     headline2: TextStyle(color: Color(0xFFF1F1F1)),
   ),
+  popupMenuTheme: PopupMenuThemeData(
+    color: Color(0xFFE9E9E9),
+  ),
   bottomAppBarColor: Color(0xFFE6E6E6),
 );
 
@@ -45,6 +48,9 @@ ThemeData dark = ThemeData(
     showSelectedLabels: false,
     showUnselectedLabels: false,
     backgroundColor: Color(0xFF151515),
+  ),
+  popupMenuTheme: PopupMenuThemeData(
+    color: Color(0xFF303030),
   ),
   bottomAppBarColor: Color(0xFF151515),
   accentTextTheme: TextTheme(

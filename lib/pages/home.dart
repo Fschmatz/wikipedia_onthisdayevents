@@ -91,23 +91,26 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             controller: controllerScroll,
             title: Text('Wikipedia On This Day Events'),
             actions: [
-              IconButton(
-                  color: Theme.of(context)
-                      .textTheme
-                      .headline6!
-                      .color!
-                      .withOpacity(0.8),
-                  icon: Icon(
-                    Icons.settings_outlined,
+              PopupMenuButton(
+                icon: Icon( Icons.more_vert_outlined),
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    child: Text("Settings"),
+                    value: 1,
                   ),
-                  onPressed: () {
+                ],
+                onSelected: (value) {
+                  if(value == 1){
                     Navigator.push(
                         context,
                         MaterialPageRoute<void>(
                           builder: (BuildContext context) => SettingsPage(),
                           fullscreenDialog: true,
                         ));
-                  }),
+                  }
+                },
+              ),
+
             ],
           ),
           body: AnimatedSwitcher(

@@ -55,7 +55,7 @@ class _EventTileState extends State<EventTile> {
             ),
           ),
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(16, 0, 0, 5),
+            contentPadding: EdgeInsets.fromLTRB(16, 0, 3, 5),
             visualDensity: VisualDensity(horizontal: 0, vertical: -4),
             title: Text(
               widget.event.eventYear.toString(),
