@@ -55,7 +55,7 @@ class _EventTileState extends State<EventTile> {
             ),
           ),
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(16, 0, 3, 5),
+            contentPadding: EdgeInsets.fromLTRB(16, 0, 0, 5),
             visualDensity: VisualDensity(horizontal: 0, vertical: -4),
             title: Text(
               widget.event.eventYear.toString(),
@@ -66,20 +66,19 @@ class _EventTileState extends State<EventTile> {
             ),
             trailing: Visibility(
               visible: widget.event.title != 'null',
-              child: Container(
-                child: IconButton(
-                  onPressed: () {
-                    Share.share(widget.event.articleLink);
-                  },
-                  icon: Icon(
-                    Icons.share_outlined,
-                    size: 22,
-                    color: Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .color!
-                        .withOpacity(0.6),
-                  ),
+              child: IconButton(
+                splashRadius: 24,
+                onPressed: () {
+                  Share.share(widget.event.articleLink);
+                },
+                icon: Icon(
+                  Icons.share_outlined,
+                  size: 20,
+                  color: Theme.of(context)
+                      .textTheme
+                      .headline6!
+                      .color!
+                      .withOpacity(0.6),
                 ),
               ),
             ),

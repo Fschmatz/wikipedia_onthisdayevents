@@ -89,28 +89,25 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
           appBar: ScrollAppBar(
             elevation: 0,
             controller: controllerScroll,
-            title: Text('Wikipedia On This Day Events'),
+            title: Text('Wikipedia Day Events'),
             actions: [
-              PopupMenuButton(
-                icon: Icon( Icons.more_vert_outlined),
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    child: Text("Settings"),
-                    value: 1,
+              IconButton(
+                  color: Theme.of(context)
+                      .textTheme
+                      .headline6!
+                      .color!
+                      .withOpacity(0.8),
+                  icon: Icon(
+                    Icons.settings_outlined,
                   ),
-                ],
-                onSelected: (value) {
-                  if(value == 1){
+                  onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute<void>(
                           builder: (BuildContext context) => SettingsPage(),
                           fullscreenDialog: true,
                         ));
-                  }
-                },
-              ),
-
+                  }),
             ],
           ),
           body: AnimatedSwitcher(
@@ -149,6 +146,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                         )
                       ]),
           ),
+
           floatingActionButton: Container(
             child: FloatingActionButton.extended(
               elevation: 1,
