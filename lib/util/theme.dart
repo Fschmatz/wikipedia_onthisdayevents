@@ -7,6 +7,16 @@ ThemeData light = ThemeData(
   primaryColor: Color(0xFFFFFFFF),
   accentColor: Colors.lightBlue[800],
   scaffoldBackgroundColor: Color(0xFFFFFFFF),
+  appBarTheme: const AppBarTheme(
+      color: Color(0xFFFFFFFF),
+      elevation: 0,
+      iconTheme: IconThemeData(
+          color: Color(0xFF000000)
+      ),
+      titleTextStyle: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF000000))),
   cardTheme: CardTheme(
     color: Color(0xFFF1F1F1),
   ),
@@ -33,11 +43,18 @@ ThemeData light = ThemeData(
 //ESCURO
 ThemeData dark = ThemeData(
   brightness: Brightness.dark,
-  primaryColor: Color(0xFF222222),
+  primaryColor: Color(0xFF202022),
   accentColor: Color(0xFF447DB8),
-  scaffoldBackgroundColor: Color(0xFF222222),
+  scaffoldBackgroundColor: Color(0xFF202022),
+  appBarTheme: const AppBarTheme(
+      color: Color(0xFF202022),
+      elevation: 0,
+      titleTextStyle: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFFFFFFFF))),
   cardTheme: CardTheme(
-    color: Color(0xFF303030),
+    color: Color(0xFF303032),
   ),
   dialogTheme: DialogTheme(
     backgroundColor: Color(0xFF303030),

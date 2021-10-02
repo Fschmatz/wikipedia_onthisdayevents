@@ -87,7 +87,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         child: SafeArea(
             child: Scaffold(
           appBar: ScrollAppBar(
-            elevation: 0,
             controller: controllerScroll,
             title: Text('Wikipedia Day Events'),
             actions: [
@@ -153,12 +152,18 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               onPressed: () {
                 chooseDate();
               },
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
               label: Text(
                 day + '/' + month,
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15),
               ),
               icon: Icon(
                 Icons.today,
+
               ),
             ),
           ),
