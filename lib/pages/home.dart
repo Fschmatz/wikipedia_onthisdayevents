@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +26,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   bool loading = true;
   late DateTime dateSelected;
   final controllerScroll = ScrollController();
+  bool _showFab = true;
 
   @override
   void initState() {
@@ -117,36 +119,48 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       color: Theme.of(context).accentColor,
                     ),
                   )
-                : ListView(
-                    controller: controllerScroll,
-                    physics: AlwaysScrollableScrollPhysics(),
-                    children: [
-                      ListView.separated(
-                          separatorBuilder: (BuildContext context, int index) =>
-                              const Divider(
-                            height: 0,
+                : NotificationListener<UserScrollNotification>(
+                onNotification: (notification){
+                  if(notification.direction == ScrollDirection.forward){
+                    setState(() => _showFab = true);
+                  }else if (notification.direction == ScrollDirection.reverse){
+                    setState(() => _showFab = false);
+                  }
+                  return true;
+                },
+                  child: ListView(
+                      controller: controllerScroll,
+                      physics: AlwaysScrollableScrollPhysics(),
+                      children: [
+                        ListView.separated(
+                            separatorBuilder: (BuildContext context, int index) =>
+                                const Divider(
+                              height: 0,
+                            ),
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: eventsList.length,
+                            itemBuilder: (context, index) {
+                              return EventTile(
+                                event: new Event(
+                                  text: eventsList[index].text,
+                                  eventYear: eventsList[index].eventYear,
+                                  articleLink: eventsList[index].articleLink,
+                                  title: eventsList[index].title,
+                                ),
+                              );
+                            },
                           ),
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: eventsList.length,
-                          itemBuilder: (context, index) {
-                            return EventTile(
-                              event: new Event(
-                                text: eventsList[index].text,
-                                eventYear: eventsList[index].eventYear,
-                                articleLink: eventsList[index].articleLink,
-                                title: eventsList[index].title,
-                              ),
-                            );
-                          },
-                        ),
-                        const SizedBox(
-                          height: 100,
-                        )
-                      ]),
+                          const SizedBox(
+                            height: 100,
+                          )
+                        ]),
+                ),
           ),
 
-          floatingActionButton: Container(
+          floatingActionButton: AnimatedOpacity(
+            duration: Duration(milliseconds: 250),
+            opacity: _showFab? 1 : 0,
             child: FloatingActionButton.extended(
               elevation: 1,
               onPressed: () {
@@ -163,10 +177,9 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               ),
               icon: Icon(
                 Icons.today,
-
               ),
             ),
-          ),
+          ) ,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
         )));
