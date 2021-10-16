@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:flutter/services.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'package:wikipedia_onthisdayevents/classes/event.dart';
 import 'package:wikipedia_onthisdayevents/classes/feed.dart';
@@ -26,7 +25,7 @@ class _HomeState extends State<Home> {
   bool loading = true;
   late DateTime dateSelected;
   final controllerScroll = ScrollController();
-  bool _showFab = true;
+  final ValueNotifier<bool> _showFab = ValueNotifier<bool>(true);
 
   @override
   void initState() {
@@ -37,6 +36,24 @@ class _HomeState extends State<Home> {
         'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
     loadJsonData();
     super.initState();
+
+    controllerScroll.addListener(
+      () {
+        if (controllerScroll.position.userScrollDirection ==
+            ScrollDirection.reverse) {
+          if (_showFab.value) {
+            _showFab.value = false;
+          }
+        }
+
+        if (controllerScroll.position.userScrollDirection ==
+            ScrollDirection.forward) {
+          if (!_showFab.value) {
+            _showFab.value = true;
+          }
+        }
+      },
+    );
   }
 
   getSelectedDay() {
@@ -116,67 +133,58 @@ class _HomeState extends State<Home> {
                       color: Theme.of(context).accentColor,
                     ),
                   )
-                : NotificationListener<UserScrollNotification>(
-                onNotification: (notification){
-                  if(notification.direction == ScrollDirection.forward){
-                    setState(() => _showFab = true);
-                  }else if (notification.direction == ScrollDirection.reverse){
-                    setState(() => _showFab = false);
-                  }
-                  return true;
-                },
-                  child: ListView(
-                      controller: controllerScroll,
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      children: [
+                : ListView(
+                    controller: controllerScroll,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    children: [
                         ListView.separated(
-                            separatorBuilder: (BuildContext context, int index) =>
-                                const Divider(
-                              height: 0,
-                            ),
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: eventsList.length,
-                            itemBuilder: (context, index) {
-                              return EventTile(
-                                event: Event(
-                                  text: eventsList[index].text,
-                                  eventYear: eventsList[index].eventYear,
-                                  articleLink: eventsList[index].articleLink,
-                                  title: eventsList[index].title,
-                                ),
-                              );
-                            },
+                          separatorBuilder: (BuildContext context, int index) =>
+                              const Divider(
+                            height: 0,
                           ),
-                          const SizedBox(
-                            height: 100,
-                          )
-                        ]),
-                ),
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: eventsList.length,
+                          itemBuilder: (context, index) {
+                            return EventTile(
+                              key: UniqueKey(),
+                              event: Event(
+                                text: eventsList[index].text,
+                                eventYear: eventsList[index].eventYear,
+                                articleLink: eventsList[index].articleLink,
+                                title: eventsList[index].title,
+                              ),
+                            );
+                          },
+                        ),
+                        const SizedBox(
+                          height: 100,
+                        )
+                      ]),
           ),
-
-          floatingActionButton: AnimatedOpacity(
-            duration: const Duration(milliseconds: 250),
-            opacity: _showFab? 1 : 0,
-            child: FloatingActionButton.extended(
-
-              onPressed: () {
-                chooseDate();
-              },
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(18)),
-              ),
-              label: Text(
-                day + '/' + month,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15),
-              ),
-              icon: const Icon(
-                Icons.today,
+          floatingActionButton: ValueListenableBuilder(
+            valueListenable: _showFab,
+            builder: (context, bool value, child) => AnimatedOpacity(
+              duration: const Duration(milliseconds: 250),
+              opacity: _showFab.value ? 1 : 0,
+              child: FloatingActionButton.extended(
+                onPressed: () {
+                  chooseDate();
+                },
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                ),
+                label: Text(
+                  day + '/' + month,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600, fontSize: 15),
+                ),
+                icon: const Icon(
+                  Icons.today,
+                ),
               ),
             ),
-          ) ,
+          ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
         )));
