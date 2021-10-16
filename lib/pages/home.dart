@@ -9,14 +9,14 @@ import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'package:wikipedia_onthisdayevents/classes/event.dart';
 import 'package:wikipedia_onthisdayevents/classes/feed.dart';
 import 'package:wikipedia_onthisdayevents/configs/settingsPage.dart';
-import 'package:wikipedia_onthisdayevents/widgets/eventTile.dart';
+import 'package:wikipedia_onthisdayevents/widgets/event_tile.dart';
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
+class _HomeState extends State<Home> {
   //https://en.wikipedia.org/api/rest_v1/#/Feed/onThisDay  ->  API page
 
   String day = '';
@@ -38,9 +38,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     loadJsonData();
     super.initState();
   }
-
-  @override
-  bool get wantKeepAlive => true;
 
   getSelectedDay() {
     return DateFormat('dd').format(dateSelected);
@@ -90,7 +87,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             child: Scaffold(
           appBar: ScrollAppBar(
             controller: controllerScroll,
-            title: Text('Wikipedia Day Events'),
+            title: const Text('Wikipedia Day Events'),
             actions: [
               IconButton(
                   color: Theme.of(context)
@@ -98,7 +95,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       .headline6!
                       .color!
                       .withOpacity(0.8),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.settings_outlined,
                   ),
                   onPressed: () {
@@ -112,7 +109,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             ],
           ),
           body: AnimatedSwitcher(
-            duration: Duration(milliseconds: 600),
+            duration: const Duration(milliseconds: 600),
             child: loading
                 ? Center(
                     child: CircularProgressIndicator(
@@ -130,19 +127,19 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                 },
                   child: ListView(
                       controller: controllerScroll,
-                      physics: AlwaysScrollableScrollPhysics(),
+                      physics: const AlwaysScrollableScrollPhysics(),
                       children: [
                         ListView.separated(
                             separatorBuilder: (BuildContext context, int index) =>
                                 const Divider(
                               height: 0,
                             ),
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: eventsList.length,
                             itemBuilder: (context, index) {
                               return EventTile(
-                                event: new Event(
+                                event: Event(
                                   text: eventsList[index].text,
                                   eventYear: eventsList[index].eventYear,
                                   articleLink: eventsList[index].articleLink,
@@ -159,23 +156,23 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
           ),
 
           floatingActionButton: AnimatedOpacity(
-            duration: Duration(milliseconds: 250),
+            duration: const Duration(milliseconds: 250),
             opacity: _showFab? 1 : 0,
             child: FloatingActionButton.extended(
-              elevation: 1,
+
               onPressed: () {
                 chooseDate();
               },
               shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
+                borderRadius: BorderRadius.all(Radius.circular(18)),
               ),
               label: Text(
                 day + '/' + month,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 15),
               ),
-              icon: Icon(
+              icon: const Icon(
                 Icons.today,
               ),
             ),

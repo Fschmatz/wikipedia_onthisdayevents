@@ -33,15 +33,15 @@ class _EventTileState extends State<EventTile> {
       child: Column(
         children: [
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(16, 10, 16, 0),
+            contentPadding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
             title: Text(
               widget.event.text,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
           ),
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-            visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+            contentPadding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+            visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
             title: Text(
               widget.event.title == 'null' ? ' ' : widget.event.title,
               style: TextStyle(
@@ -55,8 +55,8 @@ class _EventTileState extends State<EventTile> {
             ),
           ),
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(16, 0, 0, 5),
-            visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+            contentPadding: const EdgeInsets.fromLTRB(16, 0, 0, 5),
+            visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
             title: Text(
               widget.event.eventYear.toString(),
               style: TextStyle(

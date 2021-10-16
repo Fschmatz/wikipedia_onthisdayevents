@@ -21,9 +21,4 @@ class Event {
       articleLink: value['pages'][0]['content_urls']['desktop']['page'].toString(),
     );
   }
-
-@override
-  String toString() {
-    return '${this.text} - ${this.eventYear} - ${this.title} - ${this.articleLink}';
-  }
 }

@@ -4,11 +4,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 //CLARO
 ThemeData light = ThemeData(
   brightness: Brightness.light,
-  primaryColor: Color(0xFFFFFFFF),
+  primaryColor: const Color(0xFFFFFFFF),
   accentColor: Colors.lightBlue[800],
-  scaffoldBackgroundColor: Color(0xFFFFFFFF),
+  scaffoldBackgroundColor: const Color(0xFFFFFFFF),
   appBarTheme: const AppBarTheme(
-      color: Color(0xFFFFFFFF),
+      color: Color(0xFFF3F3F3),
       elevation: 0,
       iconTheme: IconThemeData(
           color: Color(0xFF000000)
@@ -17,13 +17,13 @@ ThemeData light = ThemeData(
           fontSize: 20,
           fontWeight: FontWeight.w600,
           color: Color(0xFF000000))),
-  cardTheme: CardTheme(
+  cardTheme: const CardTheme(
     color: Color(0xFFF1F1F1),
   ),
-  dialogTheme: DialogTheme(
+  dialogTheme: const DialogTheme(
     backgroundColor: Color(0xFFF9F9F9),
   ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     selectedIconTheme: IconThemeData(color: Colors.deepPurple),
     selectedLabelStyle: TextStyle(color: Colors.deepPurple),
     showSelectedLabels: false,
@@ -32,45 +32,45 @@ ThemeData light = ThemeData(
   ),
   accentTextTheme: TextTheme(
     headline1: TextStyle(color: Colors.lightBlue[700]),
-    headline2: TextStyle(color: Color(0xFFF1F1F1)),
+    headline2: const TextStyle(color: Color(0xFFF1F1F1)),
   ),
-  popupMenuTheme: PopupMenuThemeData(
+  popupMenuTheme: const PopupMenuThemeData(
     color: Color(0xFFE9E9E9),
   ),
-  bottomAppBarColor: Color(0xFFE6E6E6),
+  bottomAppBarColor: const Color(0xFFE6E6E6),
 );
 
 //ESCURO
 ThemeData dark = ThemeData(
   brightness: Brightness.dark,
-  primaryColor: Color(0xFF202022),
-  accentColor: Color(0xFF447DB8),
-  scaffoldBackgroundColor: Color(0xFF202022),
+  primaryColor: const Color(0xFF202020),
+  accentColor: const Color(0xFF447DB8),
+  scaffoldBackgroundColor: const Color(0xFF202020),
   appBarTheme: const AppBarTheme(
-      color: Color(0xFF202022),
+      color: Color(0xFF181818),
       elevation: 0,
       titleTextStyle: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w600,
           color: Color(0xFFFFFFFF))),
-  cardTheme: CardTheme(
+  cardTheme: const CardTheme(
     color: Color(0xFF303032),
   ),
-  dialogTheme: DialogTheme(
+  dialogTheme: const DialogTheme(
     backgroundColor: Color(0xFF303030),
   ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     selectedIconTheme: IconThemeData(color: Color(0xFFA590D5)),
     selectedLabelStyle: TextStyle(color: Color(0xFFA590D5)),
     showSelectedLabels: false,
     showUnselectedLabels: false,
     backgroundColor: Color(0xFF151515),
   ),
-  popupMenuTheme: PopupMenuThemeData(
+  popupMenuTheme: const PopupMenuThemeData(
     color: Color(0xFF303030),
   ),
-  bottomAppBarColor: Color(0xFF151515),
-  accentTextTheme: TextTheme(
+  bottomAppBarColor: const Color(0xFF151515),
+  accentTextTheme: const TextTheme(
     headline1: TextStyle(color: Color(0xFF97bde8)),
     headline2: TextStyle(color: Color(0xFF000000)),
   ),
