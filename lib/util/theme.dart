@@ -8,7 +8,7 @@ ThemeData light = ThemeData(
   accentColor: Colors.lightBlue[800],
   scaffoldBackgroundColor: const Color(0xFFFFFFFF),
   appBarTheme: const AppBarTheme(
-      color: Color(0xFFF3F3F3),
+      color: Color(0xFFF3F3F5),
       elevation: 0,
       iconTheme: IconThemeData(
           color: Color(0xFF000000)
@@ -28,7 +28,7 @@ ThemeData light = ThemeData(
     selectedLabelStyle: TextStyle(color: Colors.deepPurple),
     showSelectedLabels: false,
     showUnselectedLabels: false,
-    backgroundColor: Color(0xFFE5E5E5),
+    backgroundColor: Color(0xFFF3F3F5),
   ),
   accentTextTheme: TextTheme(
     headline1: TextStyle(color: Colors.lightBlue[700]),
@@ -64,7 +64,7 @@ ThemeData dark = ThemeData(
     selectedLabelStyle: TextStyle(color: Color(0xFFA590D5)),
     showSelectedLabels: false,
     showUnselectedLabels: false,
-    backgroundColor: Color(0xFF151515),
+    backgroundColor: Color(0xFF1B1B1D),
   ),
   popupMenuTheme: const PopupMenuThemeData(
     color: Color(0xFF303030),

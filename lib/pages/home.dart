@@ -137,11 +137,7 @@ class _HomeState extends State<Home> {
                     controller: controllerScroll,
                     physics: const AlwaysScrollableScrollPhysics(),
                     children: [
-                        ListView.separated(
-                          separatorBuilder: (BuildContext context, int index) =>
-                              const Divider(
-                            height: 0,
-                          ),
+                        ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: eventsList.length,
@@ -158,7 +154,7 @@ class _HomeState extends State<Home> {
                           },
                         ),
                         const SizedBox(
-                          height: 100,
+                          height: 50,
                         )
                       ]),
           ),

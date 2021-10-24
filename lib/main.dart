@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wikipedia_onthisdayevents/pages/home.dart';
+import 'package:wikipedia_onthisdayevents/app.dart';
 import 'package:wikipedia_onthisdayevents/util/theme.dart';
 
 Future<void> main() async {
@@ -13,7 +13,7 @@ Future<void> main() async {
       builder:(context, ThemeNotifier notifier, child){
         return MaterialApp(
           theme: notifier.darkTheme ? dark : light,
-          home: Home(),
+          home: App(),
         );
       },
     ),

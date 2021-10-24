@@ -1,10 +1,10 @@
 class Changelog{
 
-  static String appVersion = "1.2.4";
+  static String appVersion = "1.2.5";
   static String appName = "Wikipedia On This Day Events";
 
   static String changelogCurrent = '''  
-1.2.4
+1.2.5
 - Home Changes
 - Bug Fixes
 - Hide Fab
