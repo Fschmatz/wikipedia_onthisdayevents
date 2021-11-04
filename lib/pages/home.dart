@@ -98,91 +98,88 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        child: SafeArea(
-            child: Scaffold(
-          appBar: ScrollAppBar(
-            controller: controllerScroll,
-            title: const Text('Wikipedia Day Events'),
-            actions: [
-              IconButton(
-                  color: Theme.of(context)
-                      .textTheme
-                      .headline6!
-                      .color!
-                      .withOpacity(0.8),
-                  icon: const Icon(
-                    Icons.settings_outlined,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (BuildContext context) => SettingsPage(),
-                          fullscreenDialog: true,
-                        ));
-                  }),
-            ],
+    return Scaffold(
+      appBar: ScrollAppBar(
+    controller: controllerScroll,
+    title: const Text('Wikipedia Day Events'),
+    actions: [
+      IconButton(
+          color: Theme.of(context)
+              .textTheme
+              .headline6!
+              .color!
+              .withOpacity(0.8),
+          icon: const Icon(
+            Icons.settings_outlined,
           ),
-          body: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 600),
-            child: loading
-                ? Center(
-                    child: CircularProgressIndicator(
-                      color: Theme.of(context).accentColor,
-                    ),
-                  )
-                : ListView(
-                    controller: controllerScroll,
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    children: [
-                        ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: eventsList.length,
-                          itemBuilder: (context, index) {
-                            return EventTile(
-                              key: UniqueKey(),
-                              event: Event(
-                                text: eventsList[index].text,
-                                eventYear: eventsList[index].eventYear,
-                                articleLink: eventsList[index].articleLink,
-                                title: eventsList[index].title,
-                              ),
-                            );
-                          },
-                        ),
-                        const SizedBox(
-                          height: 50,
-                        )
-                      ]),
-          ),
-          floatingActionButton: ValueListenableBuilder(
-            valueListenable: _showFab,
-            builder: (context, bool value, child) => AnimatedOpacity(
-              duration: const Duration(milliseconds: 250),
-              opacity: _showFab.value ? 1 : 0,
-              child: FloatingActionButton.extended(
-                onPressed: () {
-                  chooseDate();
-                },
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                ),
-                label: Text(
-                  day + '/' + month,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w600, fontSize: 15),
-                ),
-                icon: const Icon(
-                  Icons.today,
-                ),
-              ),
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) => SettingsPage(),
+                  fullscreenDialog: true,
+                ));
+          }),
+    ],
+      ),
+      body: AnimatedSwitcher(
+    duration: const Duration(milliseconds: 600),
+    child: loading
+        ? Center(
+            child: CircularProgressIndicator(
+              color: Theme.of(context).accentColor,
             ),
-          ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
-        )));
+          )
+        : ListView(
+            controller: controllerScroll,
+            physics: const AlwaysScrollableScrollPhysics(),
+            children: [
+                ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: eventsList.length,
+                  itemBuilder: (context, index) {
+                    return EventTile(
+                      key: UniqueKey(),
+                      event: Event(
+                        text: eventsList[index].text,
+                        eventYear: eventsList[index].eventYear,
+                        articleLink: eventsList[index].articleLink,
+                        title: eventsList[index].title,
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(
+                  height: 50,
+                )
+              ]),
+      ),
+      floatingActionButton: ValueListenableBuilder(
+    valueListenable: _showFab,
+    builder: (context, bool value, child) => AnimatedOpacity(
+      duration: const Duration(milliseconds: 250),
+      opacity: _showFab.value ? 1 : 0,
+      child: FloatingActionButton.extended(
+        onPressed: () {
+          chooseDate();
+        },
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
+        label: Text(
+          day + '/' + month,
+          style: const TextStyle(
+              fontWeight: FontWeight.w600, fontSize: 15),
+        ),
+        icon: const Icon(
+          Icons.today,
+        ),
+      ),
+    ),
+      ),
+      floatingActionButtonLocation:
+      FloatingActionButtonLocation.centerFloat,
+    );
   }
 }

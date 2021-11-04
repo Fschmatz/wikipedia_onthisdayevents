@@ -43,11 +43,11 @@ ThemeData light = ThemeData(
 //ESCURO
 ThemeData dark = ThemeData(
   brightness: Brightness.dark,
-  primaryColor: const Color(0xFF202022),
+  primaryColor: const Color(0xFF1B1B1D),
   accentColor: const Color(0xFF447DB8),
-  scaffoldBackgroundColor: const Color(0xFF202022),
+  scaffoldBackgroundColor: const Color(0xFF1B1B1D),
   appBarTheme: const AppBarTheme(
-      color: Color(0xFF1B1B1D),
+      color: Color(0xFF151517),
       elevation: 0,
       titleTextStyle: TextStyle(
           fontSize: 20,
@@ -69,7 +69,7 @@ ThemeData dark = ThemeData(
   popupMenuTheme: const PopupMenuThemeData(
     color: Color(0xFF303030),
   ),
-  bottomAppBarColor: const Color(0xFF151515),
+  bottomAppBarColor: const Color(0xFF151517),
   accentTextTheme: const TextTheme(
     headline1: TextStyle(color: Color(0xFF97bde8)),
     headline2: TextStyle(color: Color(0xFF000000)),

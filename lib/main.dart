@@ -13,7 +13,7 @@ Future<void> main() async {
       builder:(context, ThemeNotifier notifier, child){
         return MaterialApp(
           theme: notifier.darkTheme ? dark : light,
-          home: App(),
+          home: const App(),
         );
       },
     ),
