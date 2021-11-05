@@ -20,13 +20,12 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
 
     final Color bottomOverlayColor = Theme.of(context).bottomNavigationBarTheme.backgroundColor!;
-    final Color topOverlayColor = Theme.of(context).appBarTheme.backgroundColor!;
+    final Color topOverlayColor = Theme.of(context).bottomAppBarColor;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light.copyWith(
           systemNavigationBarColor: bottomOverlayColor,
           statusBarColor: topOverlayColor,
-          systemStatusBarContrastEnforced: false
         ),
         child: Home()
     );
