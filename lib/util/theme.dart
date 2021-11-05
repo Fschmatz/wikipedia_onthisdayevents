@@ -8,12 +8,12 @@ ThemeData light = ThemeData(
   accentColor: Colors.lightBlue[800],
   scaffoldBackgroundColor: const Color(0xFFFFFFFF),
   appBarTheme: const AppBarTheme(
-      color: Color(0xFFF3F3F5),
+      backgroundColor:  Color(0xFFF3F3F5),
       elevation: 0,
-      iconTheme: IconThemeData(
+      iconTheme:  IconThemeData(
           color: Color(0xFF000000)
       ),
-      titleTextStyle: TextStyle(
+      titleTextStyle:  TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w600,
           color: Color(0xFF000000))),
@@ -28,7 +28,7 @@ ThemeData light = ThemeData(
     selectedLabelStyle: TextStyle(color: Colors.deepPurple),
     showSelectedLabels: false,
     showUnselectedLabels: false,
-    backgroundColor: Color(0xFFF3F3F5),
+    backgroundColor: Color(0xFFFFFFFF),
   ),
   accentTextTheme: TextTheme(
     headline1: TextStyle(color: Colors.lightBlue[700]),
@@ -38,6 +38,9 @@ ThemeData light = ThemeData(
     color: Color(0xFFE9E9E9),
   ),
   bottomAppBarColor: const Color(0xFFE6E6E6),
+  snackBarTheme: const SnackBarThemeData(
+    actionTextColor: Color(0xFF447DB8),
+  ),
 );
 
 //ESCURO
@@ -47,7 +50,7 @@ ThemeData dark = ThemeData(
   accentColor: const Color(0xFF447DB8),
   scaffoldBackgroundColor: const Color(0xFF1B1B1D),
   appBarTheme: const AppBarTheme(
-      color: Color(0xFF151517),
+      backgroundColor: Color(0xFF202022),//0xFF161617
       elevation: 0,
       titleTextStyle: TextStyle(
           fontSize: 20,
@@ -69,10 +72,14 @@ ThemeData dark = ThemeData(
   popupMenuTheme: const PopupMenuThemeData(
     color: Color(0xFF303030),
   ),
-  bottomAppBarColor: const Color(0xFF151517),
+  bottomAppBarColor: const Color(0xFF1B1B1D),
   accentTextTheme: const TextTheme(
     headline1: TextStyle(color: Color(0xFF97bde8)),
     headline2: TextStyle(color: Color(0xFF000000)),
+  ),
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: const Color(0xFFF0F0F0),
+    actionTextColor: Colors.lightBlue[800],
   ),
 );
 

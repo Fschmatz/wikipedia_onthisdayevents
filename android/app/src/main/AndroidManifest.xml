@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
    <application
-        android:label="Wikipedia On This Day"
+        android:label="Wikipedia Day Events"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
