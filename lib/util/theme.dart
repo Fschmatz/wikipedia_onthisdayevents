@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-//CLARO
 ThemeData light = ThemeData(
   brightness: Brightness.light,
   primaryColor: const Color(0xFFFFFFFF),
@@ -10,8 +9,8 @@ ThemeData light = ThemeData(
   appBarTheme: const AppBarTheme(
       backgroundColor:  Color(0xFFF0F0F2),
       elevation: 0,
-      iconTheme:  IconThemeData(
-          color: Color(0xFF000000)
+      iconTheme: IconThemeData(
+          color: Color(0xFF151515)
       ),
       titleTextStyle:  TextStyle(
           fontSize: 20,
@@ -28,7 +27,7 @@ ThemeData light = ThemeData(
     selectedLabelStyle: TextStyle(color: Colors.deepPurple),
     showSelectedLabels: false,
     showUnselectedLabels: false,
-    backgroundColor: Colors.black26,
+    backgroundColor: Color(0xFFD0D0D2),
   ),
   accentTextTheme: TextTheme(
     headline1: TextStyle(color: Colors.lightBlue[700]),
@@ -37,13 +36,12 @@ ThemeData light = ThemeData(
   popupMenuTheme: const PopupMenuThemeData(
     color: Color(0xFFE9E9E9),
   ),
-  bottomAppBarColor: const Color(0xFFD0D0D2),
+  bottomAppBarColor: const Color(0xFFC0C0C2),
   snackBarTheme: const SnackBarThemeData(
     actionTextColor: Color(0xFF447DB8),
   ),
 );
 
-//ESCURO
 ThemeData dark = ThemeData(
   brightness: Brightness.dark,
   primaryColor: const Color(0xFF1B1B1D),
@@ -51,6 +49,9 @@ ThemeData dark = ThemeData(
   scaffoldBackgroundColor: const Color(0xFF1B1B1D),
   appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xFF202022),//0xFF161617
+      iconTheme: IconThemeData(
+          color: Color(0xFFF0F0F0)
+      ),
       elevation: 0,
       titleTextStyle: TextStyle(
           fontSize: 20,
