@@ -1,11 +1,11 @@
 class Changelog{
 
-  static String appVersion = "1.3.0";
+  static String appVersion = "1.3.1";
   static String appName = "Wikipedia Day Events";
 
   static String changelogCurrent = '''  
-1.3.0
-- New Icone
+1.3.1
+- New Icon
 - Timeout
 - Bug Fix
 ''';

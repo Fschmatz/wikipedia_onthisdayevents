@@ -3,11 +3,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 ThemeData light = ThemeData(
   brightness: Brightness.light,
+  primaryColorBrightness: Brightness.dark,
   primaryColor: const Color(0xFFFFFFFF),
   accentColor: Colors.lightBlue[800],
   scaffoldBackgroundColor: const Color(0xFFFFFFFF),
   appBarTheme: const AppBarTheme(
-      backgroundColor:  Color(0xFFF0F0F2),
+      backgroundColor:  Color(0xFFFFFFFF),
       elevation: 0,
       iconTheme: IconThemeData(
           color: Color(0xFF151515)
@@ -36,7 +37,7 @@ ThemeData light = ThemeData(
   popupMenuTheme: const PopupMenuThemeData(
     color: Color(0xFFE9E9E9),
   ),
-  bottomAppBarColor: const Color(0xFFC0C0C2),
+  bottomAppBarColor: const Color(0xFFFFFFFF),
   snackBarTheme: const SnackBarThemeData(
     actionTextColor: Color(0xFF447DB8),
   ),
@@ -44,11 +45,12 @@ ThemeData light = ThemeData(
 
 ThemeData dark = ThemeData(
   brightness: Brightness.dark,
+  primaryColorBrightness: Brightness.light,
   primaryColor: const Color(0xFF1B1B1D),
   accentColor: const Color(0xFF447DB8),
   scaffoldBackgroundColor: const Color(0xFF1B1B1D),
   appBarTheme: const AppBarTheme(
-      backgroundColor: Color(0xFF202022),//0xFF161617
+      backgroundColor: Color(0xFF1B1B1D),//0xFF161617
       iconTheme: IconThemeData(
           color: Color(0xFFF0F0F0)
       ),
@@ -73,7 +75,7 @@ ThemeData dark = ThemeData(
   popupMenuTheme: const PopupMenuThemeData(
     color: Color(0xFF303030),
   ),
-  bottomAppBarColor: const Color(0xFF202022),
+  bottomAppBarColor: const Color(0xFF1B1B1D),
   accentTextTheme: const TextTheme(
     headline1: TextStyle(color: Color(0xFF97bde8)),
     headline2: TextStyle(color: Color(0xFF000000)),
