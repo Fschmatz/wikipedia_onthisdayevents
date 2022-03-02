@@ -12,15 +12,15 @@ class AppInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Color? accentText = Theme.of(context).accentTextTheme.headline1!.color;
+    Color? accentText = Theme.of(context).colorScheme.onSecondary;
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("App Info"),
+          title: const Text("App Info"),
         ),
         body: ListView(children: <Widget>[
           const SizedBox(height: 20),
-          CircleAvatar(
+          const CircleAvatar(
             radius: 55,
             backgroundColor: Colors.pink,
             child: CircleAvatar(
@@ -39,7 +39,7 @@ class AppInfoPage extends StatelessWidget {
           const SizedBox(height: 15),
           const Divider(),
           ListTile(
-            leading: SizedBox(
+            leading: const SizedBox(
               height: 0.1,
             ),
             title: Text("Dev".toUpperCase(),
@@ -48,7 +48,7 @@ class AppInfoPage extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     color: accentText)),
           ),
-          ListTile(
+          const ListTile(
             leading: Icon( Icons.info_outline),
             title: Text(
               "Application created using Flutter and the Dart language, used for testing and learning.",
@@ -59,7 +59,7 @@ class AppInfoPage extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            leading: SizedBox(
+            leading: const SizedBox(
               height: 0.1,
             ),
             title: Text("Source Code".toUpperCase(),
@@ -70,15 +70,15 @@ class AppInfoPage extends StatelessWidget {
           ),
           ListTile(
             onTap: () {_launchGithub();},
-            leading: Icon(Icons.open_in_new_outlined),
-            title: Text("View on GitHub",
+            leading: const Icon(Icons.open_in_new_outlined),
+            title: const Text("View on GitHub",
                 style: TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.blue)),
           ),
           const Divider(),
           ListTile(
-            leading: SizedBox(
+            leading: const SizedBox(
               height: 0.1,
             ),
             title: Text("Quote".toUpperCase(),
@@ -87,7 +87,7 @@ class AppInfoPage extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     color: accentText)),
           ),
-          ListTile(
+          const ListTile(
             leading: Icon(Icons.messenger_outline),
             title: Text(
               "Your assumptions are your windows on the world. Scrub them off every once in a while, or the light won't come in.\nIsaac Asimov",

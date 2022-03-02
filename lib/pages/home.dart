@@ -138,7 +138,7 @@ class _HomeState extends State<Home> {
         child: loading
             ? Center(
                 child: CircularProgressIndicator(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               )
             : ListView(
@@ -180,10 +180,15 @@ class _HomeState extends State<Home> {
             ),
             label: Text(
               day + '/' + month,
-              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15
+              ),
             ),
             icon: const Icon(
               Icons.today,
+              color: Colors.white,
             ),
           ),
         ),

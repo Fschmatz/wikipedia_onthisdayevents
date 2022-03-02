@@ -40,8 +40,16 @@ class _EventTileState extends State<EventTile> {
             ),
           ),
           ListTile(
-            contentPadding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-            visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
+            leading: Padding(
+              padding: const EdgeInsets.only(top: 4.0),
+              child: Text(
+                widget.event.eventYear.toString(),
+                style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).colorScheme.onSecondary,
+                    fontWeight: FontWeight.w600),
+              ),
+            ),
             title: Text(
               widget.event.title == 'null' ? ' ' : widget.event.title,
               style: TextStyle(
@@ -50,18 +58,7 @@ class _EventTileState extends State<EventTile> {
                       .textTheme
                       .headline6!
                       .color!
-                      .withOpacity(0.6),
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-          ListTile(
-            contentPadding: const EdgeInsets.fromLTRB(16, 0, 0, 5),
-            visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
-            title: Text(
-              widget.event.eventYear.toString(),
-              style: TextStyle(
-                  fontSize: 14,
-                  color: Theme.of(context).accentTextTheme.headline1!.color,
+                      .withOpacity(0.7),
                   fontWeight: FontWeight.w600),
             ),
             trailing: Visibility(
@@ -73,12 +70,12 @@ class _EventTileState extends State<EventTile> {
                 },
                 icon: Icon(
                   Icons.share_outlined,
-                  size: 20,
+                  size: 22,
                   color: Theme.of(context)
                       .textTheme
                       .headline6!
                       .color!
-                      .withOpacity(0.6),
+                      .withOpacity(0.7),
                 ),
               ),
             ),
