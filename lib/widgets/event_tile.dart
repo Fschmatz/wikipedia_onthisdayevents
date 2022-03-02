@@ -40,8 +40,9 @@ class _EventTileState extends State<EventTile> {
             ),
           ),
           ListTile(
+            contentPadding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
             leading: Padding(
-              padding: const EdgeInsets.only(top: 4.0),
+              padding: const EdgeInsets.only(top: 3.5),
               child: Text(
                 widget.event.eventYear.toString(),
                 style: TextStyle(
@@ -64,7 +65,6 @@ class _EventTileState extends State<EventTile> {
             trailing: Visibility(
               visible: widget.event.title != 'null',
               child: IconButton(
-                splashRadius: 24,
                 onPressed: () {
                   Share.share(widget.event.articleLink);
                 },
