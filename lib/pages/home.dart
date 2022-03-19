@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'package:wikipedia_onthisdayevents/classes/event.dart';
 import 'package:wikipedia_onthisdayevents/classes/feed.dart';
-import 'package:wikipedia_onthisdayevents/configs/settingsPage.dart';
 import 'package:wikipedia_onthisdayevents/widgets/event_tile.dart';
+
+import 'configs/settings.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -24,8 +24,6 @@ class _HomeState extends State<Home> {
   List<Event> eventsList = [];
   bool loading = true;
   late DateTime dateSelected;
-  final controllerScroll = ScrollController();
-  final ValueNotifier<bool> _showFab = ValueNotifier<bool>(true);
 
   @override
   void initState() {
@@ -36,24 +34,6 @@ class _HomeState extends State<Home> {
         'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
     loadJsonData();
     super.initState();
-
-    controllerScroll.addListener(
-      () {
-        if (controllerScroll.position.userScrollDirection ==
-            ScrollDirection.reverse) {
-          if (_showFab.value) {
-            _showFab.value = false;
-          }
-        }
-
-        if (controllerScroll.position.userScrollDirection ==
-            ScrollDirection.forward) {
-          if (!_showFab.value) {
-            _showFab.value = true;
-          }
-        }
-      },
-    );
   }
 
   getSelectedDay() {
@@ -91,7 +71,6 @@ class _HomeState extends State<Home> {
         throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           behavior: SnackBarBehavior.floating,
           content: const Text('Loading Error'),
-          duration: const Duration(seconds: 10),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -115,85 +94,75 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ScrollAppBar(
-        controller: controllerScroll,
-        title: const Text('Wikipedia Day Events'),
-        actions: [
-          IconButton(
-              icon: const Icon(
-                Icons.settings_outlined,
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) => SettingsPage(),
-                      fullscreenDialog: true,
-                    ));
-              }),
-        ],
-      ),
-      body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 600),
-        child: loading
-            ? Center(
-                child: CircularProgressIndicator(
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              )
-            : ListView(
-                controller: controllerScroll,
-                physics: const AlwaysScrollableScrollPhysics(),
-                children: [
-                    ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: eventsList.length,
-                      itemBuilder: (context, index) {
-                        return EventTile(
-                          key: UniqueKey(),
-                          event: Event(
-                            text: eventsList[index].text,
-                            eventYear: eventsList[index].eventYear,
-                            articleLink: eventsList[index].articleLink,
-                            title: eventsList[index].title,
-                          ),
-                        );
-                      },
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              title: Text('Events '+ day + '/' + month),
+              pinned: false,
+              floating: true,
+              snap: true,
+              actions: [
+                IconButton(
+                    icon: const Icon(
+                      Icons.today_outlined,
                     ),
-                    const SizedBox(
-                      height: 50,
-                    )
-                  ]),
-      ),
-      floatingActionButton: ValueListenableBuilder(
-        valueListenable: _showFab,
-        builder: (context, bool value, child) => AnimatedOpacity(
-          duration: const Duration(milliseconds: 250),
-          opacity: _showFab.value ? 1 : 0,
-          child: FloatingActionButton.extended(
-            onPressed: () {
-              chooseDate();
-            },
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
+                    onPressed: () {
+                      chooseDate();
+                    }),
+                const SizedBox(
+                  width: 10,
+                ),
+                IconButton(
+                    icon: const Icon(
+                      Icons.settings_outlined,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) => Settings(),
+                            fullscreenDialog: true,
+                          ));
+                    }),
+              ],
             ),
-            label: Text(
-              day + '/' + month,
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 15
-              ),
-            ),
-            icon: const Icon(
-              Icons.today,
-              color: Colors.white,
-            ),
-          ),
+
+          ];
+        },
+        body: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 600),
+          child: loading
+              ? Center(
+                  child: CircularProgressIndicator(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                )
+              : ListView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  children: [
+                      ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: eventsList.length,
+                        itemBuilder: (context, index) {
+                          return EventTile(
+                            key: UniqueKey(),
+                            event: Event(
+                              text: eventsList[index].text,
+                              eventYear: eventsList[index].eventYear,
+                              articleLink: eventsList[index].articleLink,
+                              title: eventsList[index].title,
+                            ),
+                          );
+                        },
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      )
+                    ]),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    );
+   );
   }
 }

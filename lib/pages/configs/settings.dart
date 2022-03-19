@@ -1,20 +1,18 @@
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:wikipedia_onthisdayevents/util/changelog.dart';
-import 'package:wikipedia_onthisdayevents/util/theme.dart';
+import 'package:wikipedia_onthisdayevents/util/app_details.dart';
+import '../../util/dialog_select_theme.dart';
+import 'app_info.dart';
+import 'changelog.dart';
 
-import '../util/dialog_select_theme.dart';
-import 'appInfoPage.dart';
-import 'changelogPage.dart';
-
-class SettingsPage extends StatefulWidget {
+class Settings extends StatefulWidget {
   @override
-  _SettingsPageState createState() => _SettingsPageState();
+  _SettingsState createState() => _SettingsState();
 
-  SettingsPage({Key? key}) : super(key: key);
+  Settings({Key? key}) : super(key: key);
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsState extends State<Settings> {
   String getThemeStringFormatted() {
     String theme = EasyDynamicTheme.of(context)
         .themeMode
@@ -46,21 +44,17 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               child: ListTile(
                 title: Text(
-                  Changelog.appName + " " + Changelog.appVersion,
+                  AppDetails.appName + " " + AppDetails.appVersion,
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 17.5),
                 ),
               ),
             ),
-            const Divider(),
             ListTile(
-              leading: const SizedBox(
-                height: 0.1,
-              ),
-              title: Text("General".toUpperCase(),
+              title: Text("General",
                   style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                       color: accentText)),
             ),
             ListTile(
@@ -72,21 +66,16 @@ class _SettingsPageState extends State<SettingsPage> {
               leading: const Icon(Icons.brightness_6_outlined),
               title: const Text(
                 "App Theme",
-                style: TextStyle(fontSize: 16),
               ),
               subtitle: Text(
                 getThemeStringFormatted(),
               ),
             ),
-            const Divider(),
             ListTile(
-              leading: const SizedBox(
-                height: 0.1,
-              ),
-              title: Text("About".toUpperCase(),
+              title: Text("About",
                   style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                       color: accentText)),
             ),
             ListTile(
@@ -95,13 +84,12 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               title: const Text(
                 "App Info",
-                style: TextStyle(fontSize: 16),
               ),
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute<void>(
-                      builder: (BuildContext context) => AppInfoPage(),
+                      builder: (BuildContext context) => AppInfo(),
                       fullscreenDialog: true,
                     ));
               },
@@ -112,13 +100,12 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               title: const Text(
                 "Changelog",
-                style: TextStyle(fontSize: 16),
               ),
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute<void>(
-                      builder: (BuildContext context) => ChangelogPage(),
+                      builder: (BuildContext context) => Changelog(),
                       fullscreenDialog: true,
                     ));
               },

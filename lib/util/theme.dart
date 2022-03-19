@@ -25,10 +25,11 @@ ThemeData light = ThemeData(
   ),
   dialogTheme: const DialogTheme(
     backgroundColor: Color(0xFFFFFFFF),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(28)),
+    ),
   ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    selectedIconTheme: IconThemeData(color: Colors.deepPurple),
-    selectedLabelStyle: TextStyle(color: Colors.deepPurple),
     showSelectedLabels: false,
     showUnselectedLabels: false,
     backgroundColor: Color(0xFFFFFFFF),
@@ -67,10 +68,11 @@ ThemeData dark = ThemeData(
   ),
   dialogTheme: const DialogTheme(
     backgroundColor: Color(0xFF2E3136),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(28)),
+    ),
   ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    selectedIconTheme: IconThemeData(color: Color(0xFFA590D5)),
-    selectedLabelStyle: TextStyle(color: Color(0xFFA590D5)),
     showSelectedLabels: false,
     showUnselectedLabels: false,
     backgroundColor: Color(0xFF2E3136),

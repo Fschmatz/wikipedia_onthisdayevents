@@ -1,12 +1,15 @@
-class Changelog{
+class AppDetails{
 
-  static String appVersion = "1.4.0";
+  static String appVersion = "1.4.1";
   static String appName = "Wikipedia Day Events";
+  static String repositoryLink = "https://github.com/Fschmatz/wikipedia_onthisdayevents";
 
   static String changelogCurrent = '''  
-1.4.0
+1.4.1
 - Added System Theme
 - Changed Theme Colors
+- Share onHold
+- Removed FAB
 ''';
 
   static String changelogsOld = '''

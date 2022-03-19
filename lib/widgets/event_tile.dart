@@ -30,13 +30,17 @@ class _EventTileState extends State<EventTile> {
           _launchBrowser(widget.event.articleLink);
         }
       },
+      onLongPress: () {
+        if(widget.event.title != 'null') {
+          Share.share(widget.event.articleLink);
+        }
+      },
       child: Column(
         children: [
           ListTile(
             contentPadding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
             title: Text(
               widget.event.text,
-              style: const TextStyle(fontSize: 16),
             ),
           ),
           ListTile(
@@ -62,23 +66,7 @@ class _EventTileState extends State<EventTile> {
                       .withOpacity(0.7),
                   fontWeight: FontWeight.w600),
             ),
-            trailing: Visibility(
-              visible: widget.event.title != 'null',
-              child: IconButton(
-                onPressed: () {
-                  Share.share(widget.event.articleLink);
-                },
-                icon: Icon(
-                  Icons.share_outlined,
-                  size: 22,
-                  color: Theme.of(context)
-                      .textTheme
-                      .headline6!
-                      .color!
-                      .withOpacity(0.7),
-                ),
-              ),
-            ),
+
           )
         ],
       ),

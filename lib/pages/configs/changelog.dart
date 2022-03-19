@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:wikipedia_onthisdayevents/util/changelog.dart';
+import 'package:wikipedia_onthisdayevents/util/app_details.dart';
 
-class ChangelogPage extends StatelessWidget {
-
+class Changelog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     Color? accentText = Theme.of(context).colorScheme.onSecondary;
 
     return Scaffold(
@@ -14,32 +12,24 @@ class ChangelogPage extends StatelessWidget {
         ),
         body: ListView(children: <Widget>[
           ListTile(
-              leading: const SizedBox(
-                height: 0.1,
-              ),
-              title: Text("Current Version".toUpperCase(),
+              title: Text("Current Version",
                   style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                       color: accentText))),
           ListTile(
             leading: const Icon(
               Icons.article_outlined,
             ),
             title: Text(
-              Changelog.changelogCurrent,
-              style: const TextStyle(fontSize: 16),
+              AppDetails.changelogCurrent,
             ),
           ),
-          const Divider(),
           ListTile(
-            leading: const SizedBox(
-              height: 0.1,
-            ),
-            title: Text("Previous Versions".toUpperCase(),
+            title: Text("Previous Versions",
                 style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                     color: accentText)),
           ),
           ListTile(
@@ -47,8 +37,7 @@ class ChangelogPage extends StatelessWidget {
               Icons.article_outlined,
             ),
             title: Text(
-              Changelog.changelogsOld,
-              style: const TextStyle(fontSize: 16),
+              AppDetails.changelogsOld,
             ),
           ),
         ]));
