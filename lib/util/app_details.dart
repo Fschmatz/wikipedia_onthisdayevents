@@ -1,11 +1,11 @@
 class AppDetails{
 
-  static String appVersion = "1.4.1";
+  static String appVersion = "1.4.2";
   static String appName = "Wikipedia Day Events";
   static String repositoryLink = "https://github.com/Fschmatz/wikipedia_onthisdayevents";
 
   static String changelogCurrent = '''  
-1.4.1
+1.4.2
 - Added System Theme
 - Changed Theme Colors
 - Share onHold

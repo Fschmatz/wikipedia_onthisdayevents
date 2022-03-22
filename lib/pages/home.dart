@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:wikipedia_onthisdayevents/classes/event.dart';
 import 'package:wikipedia_onthisdayevents/classes/feed.dart';
 import 'package:wikipedia_onthisdayevents/widgets/event_tile.dart';
@@ -72,7 +73,7 @@ class _HomeState extends State<Home> {
           behavior: SnackBarBehavior.floating,
           content: const Text('Loading Error'),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(12),
           ),
           action: SnackBarAction(
             label: 'RETRY',
@@ -98,7 +99,7 @@ class _HomeState extends State<Home> {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
-              title: Text('Events '+ day + '/' + month),
+              title: Text('Events '+ Jiffy(dateSelected).format("MMM dd")),
               pinned: false,
               floating: true,
               snap: true,
@@ -141,7 +142,8 @@ class _HomeState extends State<Home> {
               : ListView(
                   physics: const AlwaysScrollableScrollPhysics(),
                   children: [
-                      ListView.builder(
+                      ListView.separated(
+                        separatorBuilder: (BuildContext context, int index) => const Divider(height: 0,),
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: eventsList.length,

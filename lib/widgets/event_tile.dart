@@ -13,6 +13,7 @@ class EventTile extends StatefulWidget {
 }
 
 class _EventTileState extends State<EventTile> {
+
   //URL LAUNCHER
   _launchBrowser(String url) async {
     if (await canLaunch(url)) {
@@ -31,7 +32,7 @@ class _EventTileState extends State<EventTile> {
         }
       },
       onLongPress: () {
-        if(widget.event.title != 'null') {
+        if (widget.event.title != 'null') {
           Share.share(widget.event.articleLink);
         }
       },
@@ -44,7 +45,6 @@ class _EventTileState extends State<EventTile> {
             ),
           ),
           ListTile(
-            contentPadding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
             leading: Padding(
               padding: const EdgeInsets.only(top: 3.5),
               child: Text(
@@ -66,7 +66,6 @@ class _EventTileState extends State<EventTile> {
                       .withOpacity(0.7),
                   fontWeight: FontWeight.w600),
             ),
-
           )
         ],
       ),
