@@ -1,58 +1,59 @@
 class AppDetails{
 
-  static String appVersion = "1.4.2";
+  static String appVersion = "1.4.3";
   static String appName = "Wikipedia Day Events";
   static String repositoryLink = "https://github.com/Fschmatz/wikipedia_onthisdayevents";
 
   static String changelogCurrent = '''  
-1.4.2
-- Added System Theme
-- Changed Theme Colors
-- Share onHold
-- Removed FAB
+1.4.3
+- Added system theme
+- Changed theme colors
+- Share on hold
+- Removed fab
+- Flutter 3
 ''';
 
   static String changelogsOld = '''
 1.3.1
-- New Icon
+- New icon
 - Timeout
-- Bug Fix
+- Bug fix
 
 1.2.5
-- Home Changes
-- Bug Fixes
-- Hide Fab
+- Home changes
+- Bug fixes
+- Hide fab
 
 1.1.0
-- Ui Changes
-- Hide Appbar
-- Bug Fixes
+- Ui changes
+- Hide appbar on scroll
+- Bug fixes
 
 1.0.2
-- Technically Usable
-- Bug Fixes
+- Technically usable
+- Bug fixes
 
 0.5.0
-- Added Dynamic Value for Nested Json
-- UI Changes
-- Show Article Title
-- Share Article Link
-- Open Article Link
+- Added dynamic value for nested Json
+- UI changes
+- Show article title
+- Share article link
+- Open article link
 
 0.4.0
-- Show Event Year
-- UI Changes
+- Show event year
+- UI changes
 
 0.3.0
-- Date Picker Working
+- Date picker
 
 0.2.0
-- Feed Working  
-- App Icons
+- Feed working  
+- App icons
 - Home 
 
 0.1.0
-- App Start 
+- App start 
 ''';
 
 }

@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 
 ThemeData light = ThemeData(
   useMaterial3: true,
+  textTheme: const TextTheme(
+    titleMedium: TextStyle(fontWeight: FontWeight.w400),
+  ),
   brightness: Brightness.light,
   primaryColor: const Color(0xFFFFFFFF),
   scaffoldBackgroundColor: const Color(0xFFFFFFFF),
-  colorScheme:  ColorScheme.light(
+  colorScheme: ColorScheme.light(
     primary: Colors.lightBlue.shade800,
     onSecondary: Colors.lightBlue.shade800,
     secondary: Colors.lightBlue.shade800,
   ),
   appBarTheme: const AppBarTheme(
-      backgroundColor:  Color(0xFFFFFFFF),
+      surfaceTintColor: Color(0xFFFFFFFF),
+      backgroundColor: Color(0xFFFFFFFF),
       elevation: 0,
-      iconTheme: IconThemeData(
-          color: Color(0xFF000000)
-      ),
-      titleTextStyle:  TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.w400,
-          color: Color(0xFF000000))),
+      iconTheme: IconThemeData(color: Color(0xFF000000)),
+      titleTextStyle: TextStyle(
+          fontSize: 22, fontWeight: FontWeight.w400, color: Color(0xFF000000))),
   cardTheme: const CardTheme(
     color: Color(0xFFFFFFFF),
   ),
@@ -45,24 +45,25 @@ ThemeData light = ThemeData(
 
 ThemeData dark = ThemeData(
   useMaterial3: true,
+  textTheme: const TextTheme(
+    titleMedium: TextStyle(fontWeight: FontWeight.w400),
+  ),
   brightness: Brightness.dark,
   primaryColor: const Color(0xFF2E3136),
   scaffoldBackgroundColor: const Color(0xFF2E3136),
-  colorScheme:  const ColorScheme.dark(
+  colorScheme: const ColorScheme.dark(
     primary: Color(0xFF447DB8),
     onSecondary: Color(0xFF97bde8),
     secondary: Color(0xFF447DB8),
   ),
   appBarTheme: const AppBarTheme(
-      backgroundColor: Color(0xFF2E3136),//0xFF161617
-      iconTheme: IconThemeData(
-          color: Color(0xFFFFFFFF)
-      ),
+      surfaceTintColor: Color(0xFF2E3136),
+      backgroundColor: Color(0xFF2E3136),
+      //0xFF161617
+      iconTheme: IconThemeData(color: Color(0xFFFFFFFF)),
       elevation: 0,
       titleTextStyle: TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.w400,
-          color: Color(0xFFFFFFFF))),
+          fontSize: 22, fontWeight: FontWeight.w400, color: Color(0xFFFFFFFF))),
   cardTheme: const CardTheme(
     color: Color(0xFF2E3136),
   ),

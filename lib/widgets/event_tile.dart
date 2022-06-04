@@ -13,7 +13,6 @@ class EventTile extends StatefulWidget {
 }
 
 class _EventTileState extends State<EventTile> {
-
   //URL LAUNCHER
   _launchBrowser(String url) async {
     if (await canLaunch(url)) {
@@ -45,26 +44,30 @@ class _EventTileState extends State<EventTile> {
             ),
           ),
           ListTile(
-            leading: Padding(
-              padding: const EdgeInsets.only(top: 3.5),
-              child: Text(
-                widget.event.eventYear.toString(),
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Theme.of(context).colorScheme.onSecondary,
-                    fontWeight: FontWeight.w600),
-              ),
-            ),
-            title: Text(
-              widget.event.title == 'null' ? ' ' : widget.event.title,
-              style: TextStyle(
-                  fontSize: 14,
-                  color: Theme.of(context)
-                      .textTheme
-                      .headline6!
-                      .color!
-                      .withOpacity(0.7),
-                  fontWeight: FontWeight.w600),
+            title: RichText(
+              text: TextSpan(children: [
+                TextSpan(
+                  text: widget.event.eventYear.toString(),
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).colorScheme.onSecondary,
+                      fontWeight: FontWeight.w400),
+                ),
+                const TextSpan(
+                  text: '      ',
+                ),
+                TextSpan(
+                  text: widget.event.title == 'null' ? ' ' : widget.event.title,
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .color!
+                          .withOpacity(0.7),
+                      fontWeight: FontWeight.w400),
+                )
+              ]),
             ),
           )
         ],
@@ -72,3 +75,4 @@ class _EventTileState extends State<EventTile> {
     );
   }
 }
+

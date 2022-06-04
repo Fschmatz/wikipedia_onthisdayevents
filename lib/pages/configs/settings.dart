@@ -65,7 +65,7 @@ class _SettingsState extends State<Settings> {
                   }),
               leading: const Icon(Icons.brightness_6_outlined),
               title: const Text(
-                "App Theme",
+                "App theme",
               ),
               subtitle: Text(
                 getThemeStringFormatted(),
@@ -83,14 +83,13 @@ class _SettingsState extends State<Settings> {
                 Icons.info_outline,
               ),
               title: const Text(
-                "App Info",
+                "App info",
               ),
               onTap: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute<void>(
+                    MaterialPageRoute(
                       builder: (BuildContext context) => AppInfo(),
-                      fullscreenDialog: true,
                     ));
               },
             ),
@@ -104,9 +103,8 @@ class _SettingsState extends State<Settings> {
               onTap: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute<void>(
+                    MaterialPageRoute(
                       builder: (BuildContext context) => Changelog(),
-                      fullscreenDialog: true,
                     ));
               },
             ),

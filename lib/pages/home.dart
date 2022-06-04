@@ -47,10 +47,23 @@ class _HomeState extends State<Home> {
 
   chooseDate() async {
     DateTime? data = await showDatePicker(
-        context: context,
-        initialDate: dateSelected,
-        firstDate: DateTime(DateTime.now().year - 1),
-        lastDate: DateTime(DateTime.now().year + 1));
+      context: context,
+      initialDate: dateSelected,
+      firstDate: DateTime(DateTime.now().year - 1),
+      lastDate: DateTime(DateTime.now().year + 1),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: Theme.of(context).colorScheme.primary,
+              onSurface: Theme.of(context).textTheme.headline6!.color!,
+              background: Theme.of(context).primaryColor,
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
 
     if (data != null) {
       setState(() {
@@ -99,7 +112,7 @@ class _HomeState extends State<Home> {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
-              title: Text('Events '+ Jiffy(dateSelected).format("MMM dd")),
+              title: Text('Events ' + Jiffy(dateSelected).format("MMM dd")),
               pinned: false,
               floating: true,
               snap: true,
@@ -121,14 +134,12 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       Navigator.push(
                           context,
-                          MaterialPageRoute<void>(
+                          MaterialPageRoute(
                             builder: (BuildContext context) => Settings(),
-                            fullscreenDialog: true,
                           ));
                     }),
               ],
             ),
-
           ];
         },
         body: AnimatedSwitcher(
@@ -143,7 +154,10 @@ class _HomeState extends State<Home> {
                   physics: const AlwaysScrollableScrollPhysics(),
                   children: [
                       ListView.separated(
-                        separatorBuilder: (BuildContext context, int index) => const Divider(height: 0,),
+                        separatorBuilder: (BuildContext context, int index) =>
+                            const Divider(
+                          height: 0,
+                        ),
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: eventsList.length,
@@ -165,6 +179,6 @@ class _HomeState extends State<Home> {
                     ]),
         ),
       ),
-   );
+    );
   }
 }
