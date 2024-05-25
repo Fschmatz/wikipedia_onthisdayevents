@@ -26,8 +26,7 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    Color themeColorApp = Theme.of(context).colorScheme.primary;
-    Color? accentText = Theme.of(context).colorScheme.onSecondary;
+    Color accentText = Theme.of(context).colorScheme.primary;
 
     return Scaffold(
         appBar: AppBar(
@@ -38,7 +37,7 @@ class _SettingsState extends State<Settings> {
             Card(
               elevation: 1,
               margin: const EdgeInsets.fromLTRB(16, 20, 16, 25),
-              color: themeColorApp,
+              color: accentText,
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(12)),
               ),
@@ -46,7 +45,7 @@ class _SettingsState extends State<Settings> {
                 title: Text(
                   AppDetails.appName + " " + AppDetails.appVersion,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 17.5),
+                  style: TextStyle(fontSize: 17.5, color: Theme.of(context).colorScheme.onPrimary),
                 ),
               ),
             ),

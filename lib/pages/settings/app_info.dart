@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wikipedia_onthisdayevents/util/app_details.dart';
 
+import '../../util/utils.dart';
+
 class AppInfo extends StatelessWidget {
-  _launchGithub() {
-    String url = AppDetails.repositoryLink;
-    launch(url);
-  }
 
   @override
   Widget build(BuildContext context) {
-    Color? accentText = Theme.of(context).colorScheme.onSecondary;
+    Color accentText = Theme.of(context).colorScheme.primary;
 
     return Scaffold(
         appBar: AppBar(
@@ -57,13 +55,38 @@ class AppInfo extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              _launchGithub();
+              Utils().openGithubRepository();
             },
             leading: const Icon(Icons.open_in_new_outlined),
             title: const Text("View on GitHub",
                 style: TextStyle(
-                    decoration: TextDecoration.underline, color: Colors.blue)),
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.blue,
+                    color: Colors.blue)),
           ),
+          ListTile(
+            title: Text("API Info",
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: accentText)),
+          ),
+          ListTile(
+            onTap: () {
+              Utils().launchBrowser(AppDetails.apiLink);
+            },
+            leading: const Icon(
+              Icons.open_in_new_outlined,
+            ),
+            title: const Text(
+                "View API Page",
+                style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.blue,
+                    color: Colors.blue)
+            ),
+          ),
+
           ListTile(
             title: Text("Quote",
                 style: TextStyle(

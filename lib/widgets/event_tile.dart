@@ -3,6 +3,8 @@ import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wikipedia_onthisdayevents/classes/event.dart';
 
+import '../util/utils.dart';
+
 class EventTile extends StatefulWidget {
   @override
   _EventTileState createState() => _EventTileState();
@@ -13,21 +15,14 @@ class EventTile extends StatefulWidget {
 }
 
 class _EventTileState extends State<EventTile> {
-  //URL LAUNCHER
-  _launchBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Error';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return InkWell(
       onTap: () {
         if (widget.event.articleLink != 'null') {
-          _launchBrowser(widget.event.articleLink);
+          Utils().launchBrowser(widget.event.articleLink);
         }
       },
       onLongPress: () {
@@ -42,37 +37,27 @@ class _EventTileState extends State<EventTile> {
             title: Text(
               widget.event.text,
             ),
-          ),
-          ListTile(
-            title: RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                  text: widget.event.eventYear.toString(),
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: Theme.of(context).colorScheme.onSecondary,
-                      fontWeight: FontWeight.w400),
-                ),
-                const TextSpan(
-                  text: '      ',
-                ),
-                TextSpan(
-                  text: widget.event.title == 'null' ? ' ' : widget.event.title,
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .color!
-                          .withOpacity(0.7),
-                      fontWeight: FontWeight.w400),
-                )
-              ]),
+            subtitle: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: RichText(
+                text: TextSpan(children: [
+                  TextSpan(
+                    text: widget.event.eventYear.toString(),
+                    style: TextStyle(fontSize: 12, color: theme.colorScheme.primary),
+                  ),
+                  const TextSpan(
+                    text: '   ',
+                  ),
+                  TextSpan(
+                    text: widget.event.title == 'null' ? ' ' : widget.event.title,
+                    style: TextStyle(fontSize: 12, color: theme.hintColor),
+                  )
+                ]),
+              ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
-

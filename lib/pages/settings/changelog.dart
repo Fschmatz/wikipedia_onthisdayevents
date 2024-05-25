@@ -4,7 +4,7 @@ import 'package:wikipedia_onthisdayevents/util/app_details.dart';
 class Changelog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Color? accentText = Theme.of(context).colorScheme.onSecondary;
+    Color? accentText = Theme.of(context).colorScheme.primary;
 
     return Scaffold(
         appBar: AppBar(

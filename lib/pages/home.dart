@@ -7,9 +7,9 @@ import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:wikipedia_onthisdayevents/classes/event.dart';
 import 'package:wikipedia_onthisdayevents/classes/feed.dart';
+import 'package:wikipedia_onthisdayevents/pages/settings/settings.dart';
 import 'package:wikipedia_onthisdayevents/widgets/event_tile.dart';
 
-import 'configs/settings.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -31,8 +31,7 @@ class _HomeState extends State<Home> {
     dateSelected = DateTime.now();
     day = getSelectedDay().toString();
     month = getSelectedMonth().toString();
-    feedUrl =
-        'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
+    feedUrl = 'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
     loadJsonData();
     super.initState();
   }
@@ -52,16 +51,7 @@ class _HomeState extends State<Home> {
       firstDate: DateTime(DateTime.now().year - 1),
       lastDate: DateTime(DateTime.now().year + 1),
       builder: (context, child) {
-        return Theme(
-          data: Theme.of(context).copyWith(
-            colorScheme: ColorScheme.light(
-              primary: Theme.of(context).colorScheme.primary,
-              onSurface: Theme.of(context).textTheme.headline6!.color!,
-              background: Theme.of(context).primaryColor,
-            ),
-          ),
-          child: child!,
-        );
+        return child!;
       },
     );
 
@@ -71,8 +61,7 @@ class _HomeState extends State<Home> {
         dateSelected = data;
         day = getSelectedDay().toString();
         month = getSelectedMonth().toString();
-        feedUrl =
-            'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
+        feedUrl = 'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
       });
       loadJsonData();
     }
@@ -111,11 +100,8 @@ class _HomeState extends State<Home> {
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
-            SliverAppBar(
-              title: Text('Events ' + Jiffy(dateSelected).format("MMM dd")),
-              pinned: false,
-              floating: true,
-              snap: true,
+            SliverAppBar.large(
+              title: Text(Jiffy(dateSelected).format("MMM dd")),
               actions: [
                 IconButton(
                     icon: const Icon(
@@ -124,9 +110,6 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       chooseDate();
                     }),
-                const SizedBox(
-                  width: 10,
-                ),
                 IconButton(
                     icon: const Icon(
                       Icons.settings_outlined,
@@ -143,40 +126,40 @@ class _HomeState extends State<Home> {
           ];
         },
         body: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 600),
+          duration: const Duration(milliseconds: 450),
           child: loading
               ? Center(
                   child: CircularProgressIndicator(
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 )
-              : ListView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  children: [
-                      ListView.separated(
-                        separatorBuilder: (BuildContext context, int index) =>
-                            const Divider(
-                          height: 0,
-                        ),
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: eventsList.length,
-                        itemBuilder: (context, index) {
-                          return EventTile(
-                            key: UniqueKey(),
-                            event: Event(
-                              text: eventsList[index].text,
-                              eventYear: eventsList[index].eventYear,
-                              articleLink: eventsList[index].articleLink,
-                              title: eventsList[index].title,
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(
-                        height: 50,
-                      )
-                    ]),
+              : ListView(physics: const AlwaysScrollableScrollPhysics(), children: [
+                  ListView.separated(
+                    separatorBuilder: (BuildContext context, int index) => const Divider(
+                      height: 0,
+                    ),
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: eventsList.length,
+                    itemBuilder: (context, index) {
+
+                      Event event = Event(
+                        text: eventsList[index].text,
+                        eventYear: eventsList[index].eventYear,
+                        articleLink: eventsList[index].articleLink,
+                        title: eventsList[index].title,
+                      );
+
+                      return EventTile(
+                        key: UniqueKey(),
+                        event: event,
+                      );
+                    },
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  )
+                ]),
         ),
       ),
     );
