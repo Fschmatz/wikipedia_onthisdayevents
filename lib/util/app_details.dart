@@ -1,12 +1,12 @@
 class AppDetails{
 
-  static String appVersion = "1.5.0";
+  static String appVersion = "1.5.1";
   static String appName = "Wikipedia Day Events";
   static String repositoryLink = "https://github.com/Fschmatz/wikipedia_onthisdayevents";
   static String apiLink = "https://en.wikipedia.org/api/rest_v1/";
 
   static String changelogCurrent = '''  
-1.5.0
+1.5.1
 - Monet
 - UI changes
 - Small fixes

@@ -43,14 +43,14 @@ class _EventTileState extends State<EventTile> {
                 text: TextSpan(children: [
                   TextSpan(
                     text: widget.event.eventYear.toString(),
-                    style: TextStyle(fontSize: 12, color: theme.colorScheme.primary),
+                    style: TextStyle(fontSize: 12, color: theme.colorScheme.primary, fontWeight: FontWeight.w500),
                   ),
                   const TextSpan(
                     text: '   ',
                   ),
                   TextSpan(
                     text: widget.event.title == 'null' ? ' ' : widget.event.title,
-                    style: TextStyle(fontSize: 12, color: theme.hintColor),
+                    style: TextStyle(fontSize: 12, color: theme.hintColor, fontWeight: FontWeight.w500),
                   )
                 ]),
               ),

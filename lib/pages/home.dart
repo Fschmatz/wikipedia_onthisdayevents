@@ -25,15 +25,17 @@ class _HomeState extends State<Home> {
   List<Event> eventsList = [];
   bool loading = true;
   late DateTime dateSelected;
+  ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
+    super.initState();
+
     dateSelected = DateTime.now();
     day = getSelectedDay().toString();
     month = getSelectedMonth().toString();
     feedUrl = 'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
     loadJsonData();
-    super.initState();
   }
 
   getSelectedDay() {
@@ -56,13 +58,16 @@ class _HomeState extends State<Home> {
     );
 
     if (data != null) {
+      scrollController.jumpTo(0);
+      dateSelected = data;
+      day = getSelectedDay().toString();
+      month = getSelectedMonth().toString();
+      feedUrl = 'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
+
       setState(() {
         loading = true;
-        dateSelected = data;
-        day = getSelectedDay().toString();
-        month = getSelectedMonth().toString();
-        feedUrl = 'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
       });
+
       loadJsonData();
     }
   }
@@ -84,12 +89,14 @@ class _HomeState extends State<Home> {
         ));
       },
     );
+
     if (response.statusCode == 200) {
       Feed feedList = Feed.fromJson(jsonDecode(response.body));
       List<Event> listEventsFeed = feedList.events.toList();
+      eventsList = listEventsFeed;
+
       setState(() {
         loading = false;
-        eventsList = listEventsFeed;
       });
     }
   }
@@ -98,9 +105,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: NestedScrollView(
+        controller: scrollController,
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
-            SliverAppBar.large(
+            SliverAppBar.medium(
               title: Text(Jiffy(dateSelected).format("MMM dd")),
               actions: [
                 IconButton(
@@ -133,7 +141,9 @@ class _HomeState extends State<Home> {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 )
-              : ListView(physics: const AlwaysScrollableScrollPhysics(), children: [
+              : ListView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              children: [
                   ListView.separated(
                     separatorBuilder: (BuildContext context, int index) => const Divider(
                       height: 0,
@@ -154,6 +164,7 @@ class _HomeState extends State<Home> {
                         key: UniqueKey(),
                         event: event,
                       );
+
                     },
                   ),
                   const SizedBox(
