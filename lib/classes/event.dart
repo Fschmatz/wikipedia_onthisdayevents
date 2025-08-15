@@ -1,5 +1,3 @@
-
-
 import 'package:dynamic_value/dynamic_value.dart';
 
 class Event {
@@ -8,10 +6,9 @@ class Event {
   final String title;
   final String articleLink;
 
-  Event({required this.text,required this.eventYear,required this.title,required this.articleLink });
+  Event({required this.text, required this.eventYear, required this.title, required this.articleLink});
 
   factory Event.fromJSON(dynamic json) {
-
     final value = DynamicValue(json);
 
     return Event(

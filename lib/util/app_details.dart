@@ -1,19 +1,25 @@
-class AppDetails{
-
-  static String appVersion = "1.5.1";
+class AppDetails {
+  static String appVersion = "1.6.0";
   static String appName = "Wikipedia Day Events";
   static String repositoryLink = "https://github.com/Fschmatz/wikipedia_onthisdayevents";
   static String apiLink = "https://en.wikipedia.org/api/rest_v1/";
 
-  static String changelogCurrent = '''  
+  static String changelogCurrent = '''
+$appVersion
+- Update Flutter 3.32
+- New icon
+- Themed icon
+- Bug fixes
+- UI changes
+''';
+
+  static String changelogsOld = '''
 1.5.1
 - Monet
 - UI changes
 - Small fixes
 - Flutter 3.19
-''';
 
-  static String changelogsOld = '''
 1.4.3
 - Added system theme
 - Changed theme colors
@@ -62,5 +68,4 @@ class AppDetails{
 0.1.0
 - App start 
 ''';
-
 }

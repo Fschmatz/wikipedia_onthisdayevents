@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:share/share.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:wikipedia_onthisdayevents/classes/event.dart';
 
 import '../util/utils.dart';
 
 class EventTile extends StatefulWidget {
+  final Event event;
+
+  const EventTile({Key? key, required this.event}) : super(key: key);
+
   @override
-  _EventTileState createState() => _EventTileState();
-
-  Event event;
-
-  EventTile({Key? key, required this.event}) : super(key: key);
+  State<EventTile> createState() => _EventTileState();
 }
 
 class _EventTileState extends State<EventTile> {
@@ -33,7 +32,7 @@ class _EventTileState extends State<EventTile> {
       child: Column(
         children: [
           ListTile(
-            contentPadding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
+            contentPadding: const EdgeInsets.fromLTRB(16, 2, 16, 0),
             title: Text(
               widget.event.text,
             ),
@@ -43,14 +42,14 @@ class _EventTileState extends State<EventTile> {
                 text: TextSpan(children: [
                   TextSpan(
                     text: widget.event.eventYear.toString(),
-                    style: TextStyle(fontSize: 12, color: theme.colorScheme.primary, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 12, color: theme.colorScheme.primary, fontWeight: FontWeight.w600),
                   ),
                   const TextSpan(
                     text: '   ',
                   ),
                   TextSpan(
                     text: widget.event.title == 'null' ? ' ' : widget.event.title,
-                    style: TextStyle(fontSize: 12, color: theme.hintColor, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 12, color: theme.colorScheme.secondary, fontWeight: FontWeight.w600),
                   )
                 ]),
               ),

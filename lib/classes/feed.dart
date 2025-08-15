@@ -8,8 +8,8 @@ class Feed {
   factory Feed.fromJson(dynamic json) {
     if (json['events'] != null) {
       var eventsObjsJson = json['events'] as List;
-      List<Event> eventsList =
-          eventsObjsJson.map((eventJson) => Event.fromJSON(eventJson)).toList();
+      List<Event> eventsList = eventsObjsJson.map((eventJson) => Event.fromJSON(eventJson)).toList();
+
       return Feed(
         eventsList,
       );

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
@@ -10,46 +10,52 @@ import 'package:wikipedia_onthisdayevents/classes/feed.dart';
 import 'package:wikipedia_onthisdayevents/pages/settings/settings.dart';
 import 'package:wikipedia_onthisdayevents/widgets/event_tile.dart';
 
-
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
-  _HomeState createState() => _HomeState();
+  State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  //https://en.wikipedia.org/api/rest_v1/#/Feed/onThisDay  ->  API page
+  String _day = '';
+  String _month = '';
 
-  String day = '';
-  String month = '';
-  String feedUrl = '';
-  List<Event> eventsList = [];
-  bool loading = true;
-  late DateTime dateSelected;
-  ScrollController scrollController = ScrollController();
+  //String _feedUrl = '';
+  List<Event> _eventsList = [];
+  bool _loading = true;
+  late DateTime _dateSelected;
+  final ScrollController _scrollController = ScrollController();
+
+  // https://en.wikipedia.org/api/rest_v1/#/Feed/onThisDay  ->  API page
 
   @override
   void initState() {
     super.initState();
 
-    dateSelected = DateTime.now();
-    day = getSelectedDay().toString();
-    month = getSelectedMonth().toString();
-    feedUrl = 'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
+    _dateSelected = DateTime.now();
     loadJsonData();
   }
 
-  getSelectedDay() {
-    return DateFormat('dd').format(dateSelected);
+  String getSelectedDay() {
+    return DateFormat('dd').format(_dateSelected);
   }
 
-  getSelectedMonth() {
-    return DateFormat('MM').format(dateSelected);
+  String getSelectedMonth() {
+    return DateFormat('MM').format(_dateSelected);
+  }
+
+  String getFeedUrl() {
+    _day = getSelectedDay().toString();
+    _month = getSelectedMonth().toString();
+
+    return 'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$_month/$_day';
   }
 
   chooseDate() async {
     DateTime? data = await showDatePicker(
       context: context,
-      initialDate: dateSelected,
+      initialDate: _dateSelected,
       firstDate: DateTime(DateTime.now().year - 1),
       lastDate: DateTime(DateTime.now().year + 1),
       builder: (context, child) {
@@ -58,14 +64,11 @@ class _HomeState extends State<Home> {
     );
 
     if (data != null) {
-      scrollController.jumpTo(0);
-      dateSelected = data;
-      day = getSelectedDay().toString();
-      month = getSelectedMonth().toString();
-      feedUrl = 'https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/$month/$day';
+      _scrollController.jumpTo(0);
+      _dateSelected = data;
 
       setState(() {
-        loading = true;
+        _loading = true;
       });
 
       loadJsonData();
@@ -73,7 +76,7 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> loadJsonData() async {
-    final response = await http.get(Uri.parse(feedUrl)).timeout(
+    final response = await http.get(Uri.parse(getFeedUrl())).timeout(
       const Duration(seconds: 10),
       onTimeout: () {
         throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -93,10 +96,10 @@ class _HomeState extends State<Home> {
     if (response.statusCode == 200) {
       Feed feedList = Feed.fromJson(jsonDecode(response.body));
       List<Event> listEventsFeed = feedList.events.toList();
-      eventsList = listEventsFeed;
+      _eventsList = listEventsFeed;
 
       setState(() {
-        loading = false;
+        _loading = false;
       });
     }
   }
@@ -105,11 +108,13 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: NestedScrollView(
-        controller: scrollController,
+        controller: _scrollController,
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
-            SliverAppBar.medium(
-              title: Text(Jiffy(dateSelected).format("MMM dd")),
+            SliverAppBar.large(
+              title: Text(
+                Jiffy(_dateSelected).format("MMMM dd"),
+              ),
               actions: [
                 IconButton(
                     icon: const Icon(
@@ -126,7 +131,7 @@ class _HomeState extends State<Home> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (BuildContext context) => Settings(),
+                            builder: (BuildContext context) => const Settings(),
                           ));
                     }),
               ],
@@ -135,36 +140,32 @@ class _HomeState extends State<Home> {
         },
         body: AnimatedSwitcher(
           duration: const Duration(milliseconds: 450),
-          child: loading
+          child: _loading
               ? Center(
                   child: CircularProgressIndicator(
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 )
-              : ListView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              children: [
+              : ListView(physics: const AlwaysScrollableScrollPhysics(), children: [
                   ListView.separated(
                     separatorBuilder: (BuildContext context, int index) => const Divider(
                       height: 0,
                     ),
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: eventsList.length,
+                    itemCount: _eventsList.length,
                     itemBuilder: (context, index) {
-
                       Event event = Event(
-                        text: eventsList[index].text,
-                        eventYear: eventsList[index].eventYear,
-                        articleLink: eventsList[index].articleLink,
-                        title: eventsList[index].title,
+                        text: _eventsList[index].text,
+                        eventYear: _eventsList[index].eventYear,
+                        articleLink: _eventsList[index].articleLink,
+                        title: _eventsList[index].title,
                       );
 
                       return EventTile(
                         key: UniqueKey(),
                         event: event,
                       );
-
                     },
                   ),
                   const SizedBox(

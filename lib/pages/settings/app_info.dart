@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:wikipedia_onthisdayevents/util/app_details.dart';
 
 import '../../util/utils.dart';
 
 class AppInfo extends StatelessWidget {
+  const AppInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +26,12 @@ class AppInfo extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           Center(
-            child: Text(AppDetails.appName + " " + AppDetails.appVersion,
-                style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w700,
-                    color: accentText)),
+            child: Text("${AppDetails.appName} ${AppDetails.appVersion}",
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700, color: accentText)),
           ),
           const SizedBox(height: 15),
           ListTile(
-            title: Text("Dev",
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: accentText)),
+            title: Text("Dev", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: accentText)),
           ),
           const ListTile(
             leading: Icon(Icons.info_outline),
@@ -47,11 +40,7 @@ class AppInfo extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text("Source Code",
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: accentText)),
+            title: Text("Source Code", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: accentText)),
           ),
           ListTile(
             onTap: () {
@@ -59,17 +48,10 @@ class AppInfo extends StatelessWidget {
             },
             leading: const Icon(Icons.open_in_new_outlined),
             title: const Text("View on GitHub",
-                style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    decorationColor: Colors.blue,
-                    color: Colors.blue)),
+                style: TextStyle(decoration: TextDecoration.underline, decorationColor: Colors.blue, color: Colors.blue)),
           ),
           ListTile(
-            title: Text("API Info",
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: accentText)),
+            title: Text("API Info", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: accentText)),
           ),
           ListTile(
             onTap: () {
@@ -78,21 +60,11 @@ class AppInfo extends StatelessWidget {
             leading: const Icon(
               Icons.open_in_new_outlined,
             ),
-            title: const Text(
-                "View API Page",
-                style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    decorationColor: Colors.blue,
-                    color: Colors.blue)
-            ),
+            title:
+                const Text("View API Page", style: TextStyle(decoration: TextDecoration.underline, decorationColor: Colors.blue, color: Colors.blue)),
           ),
-
           ListTile(
-            title: Text("Quote",
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: accentText)),
+            title: Text("Quote", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: accentText)),
           ),
           const ListTile(
             leading: Icon(Icons.messenger_outline),

@@ -1,23 +1,21 @@
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:wikipedia_onthisdayevents/util/app_details.dart';
+
 import '../../util/dialog_select_theme.dart';
 import 'app_info.dart';
 import 'changelog.dart';
 
 class Settings extends StatefulWidget {
-  @override
-  _SettingsState createState() => _SettingsState();
+  const Settings({Key? key}) : super(key: key);
 
-  Settings({Key? key}) : super(key: key);
+  @override
+  State<Settings> createState() => _SettingsState();
 }
 
 class _SettingsState extends State<Settings> {
   String getThemeStringFormatted() {
-    String theme = EasyDynamicTheme.of(context)
-        .themeMode
-        .toString()
-        .replaceAll('ThemeMode.', '');
+    String theme = EasyDynamicTheme.of(context).themeMode.toString().replaceAll('ThemeMode.', '');
     if (theme == 'system') {
       theme = 'system default';
     }
@@ -43,18 +41,14 @@ class _SettingsState extends State<Settings> {
               ),
               child: ListTile(
                 title: Text(
-                  AppDetails.appName + " " + AppDetails.appVersion,
+                  "${AppDetails.appName} ${AppDetails.appVersion}",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 17.5, color: Theme.of(context).colorScheme.onPrimary),
                 ),
               ),
             ),
             ListTile(
-              title: Text("General",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: accentText)),
+              title: Text("General", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: accentText)),
             ),
             ListTile(
               onTap: () => showDialog(
@@ -71,11 +65,7 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
-              title: Text("About",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: accentText)),
+              title: Text("About", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: accentText)),
             ),
             ListTile(
               leading: const Icon(
